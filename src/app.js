@@ -18,4 +18,7 @@ app.use(express.json()); //Aclaramos que el servidor pueda procesar JSON
 app.use("/home", products);
 app.use("/prueba", prueba);
 
+//Archivos estáticos
+app.use(express.static("public"));
+
 export default app;

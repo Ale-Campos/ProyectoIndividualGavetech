@@ -113,27 +113,59 @@ const updateProduct = async (req, res) => {
 
 const pruebaIndex = (req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
-  fs.readFile(__dirname + "./../views/index.html", null, (err, data) => {
-    if (err) throw err;
-    res.write(data);
-    res.end();
-  });
+  fs.readFile(
+    __dirname + "./../../public/views/index.html",
+    null,
+    (err, data) => {
+      if (err) throw err;
+      res.write(data);
+      res.end();
+    }
+  );
 };
 const pruebaIndex2 = (req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
-  fs.readFile(__dirname + "./../views/index2.html", null, (err, data) => {
-    if (err) throw err;
-    res.write(data);
-    res.end();
-  });
+  fs.readFile(
+    __dirname + "./../../public/views/index2.html",
+    null,
+    (err, data) => {
+      if (err) throw err;
+      res.write(data);
+      res.end();
+    }
+  );
 };
 const home = (req, res) => {
   res.writeHead(200, { "Content-Type": "text/html" });
-  fs.readFile(__dirname + "./../views/home.html", null, (err, data) => {
-    if (err) throw err;
-    res.write(data);
-    res.end();
-  });
+  fs.readFile(
+    __dirname + "./../../public/views/home.html",
+    null,
+    (err, data) => {
+      if (err) throw err;
+      res.write(data);
+      res.end();
+    }
+  );
+};
+
+const sendInfo = async (req, res) => {
+  const { idProducto, descripcion, imagen, stock, posicion, categoria_id } =
+    req.body;
+  const nuevoProducto = {
+    idProducto,
+    descripcion,
+    imagen,
+    stock,
+    posicion,
+    categoria_id,
+  };
+  console.log(nuevoProducto);
+  const connection = await getConnection();
+  const result = await connection.query(
+    `insert into producto SET ?`,
+    nuevoProducto
+  );
+  res.send("Producto agregado");
 };
 export const methods = {
   getProducts,
@@ -144,4 +176,5 @@ export const methods = {
   pruebaIndex,
   pruebaIndex2,
   home,
+  sendInfo,
 };
