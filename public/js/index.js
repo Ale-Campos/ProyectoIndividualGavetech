@@ -1,5 +1,5 @@
 let selecciones = [];
-fetch("home/list")
+fetch(window.location + "/list")
   .then((response) => response.json())
   .then((data) => mostarData(data))
   .catch((err) => console.log(err));
@@ -32,20 +32,21 @@ async function leerIngresos() {
     categoria_id,
   };
 
-  const response = await fetch("/home/send", {
+  const response = await fetch(window.location + "/send", {
     method: "POST",
     body: JSON.stringify(productoNuevo),
     headers: {
       "Content-type": "application/json",
     },
   });
-  console.log("Response front " + response);
+
   const result = response.json();
-  return result;
+  console.log("Response front " + result);
+  return result; //Resultado de la promesa
 }
 
 async function mostrarProductos() {
-  fetch("home/list")
+  fetch(window.location + "/list")
     .then((response) => response.json())
     .then((data) => mostarData(data))
     .catch((err) => console.log(err));
@@ -64,7 +65,7 @@ async function mostrarProductos() {
 
 function agregarAPedido() {
   let select = document.getElementById("select2").value;
-  fetch(`home/${select}`)
+  fetch(window.location + `/${select}`)
     .then((response) => response.json())
     .then((data) => imprimirResultado(data))
     .catch((err) => console.log(err));
@@ -86,3 +87,28 @@ function agregarAPedido() {
 const agregarSelecciones = (seleccion) => {
   selecciones.push(seleccion);
 };
+
+async function enviarPedido() {
+  //Aca ponemos la info que queremos pasar a qr
+  let idProducto = "";
+  let descripcion = "/";
+  //Formamos los strings
+  selecciones.forEach((x) => {
+    idProducto = idProducto + `${x.idproducto},`;
+    descripcion = descripcion + `${x.descripcion},`;
+  });
+  //Creamos el json a enviar
+  let json = {
+    idProducto: idProducto,
+    descripcion: descripcion,
+  };
+  console.log(json);
+  //Enviamos por el post de la api
+  await fetch(window.location + "qr/sendString", {
+    method: "POST",
+    body: JSON.stringify(json),
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+}

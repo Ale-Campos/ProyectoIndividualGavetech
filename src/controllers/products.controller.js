@@ -167,6 +167,16 @@ const sendInfo = async (req, res) => {
   );
   res.send("Producto agregado");
 };
+const enviarStringQr = (req, res) => {
+  const { idProducto, descripcion } = req.body;
+  const obj = {
+    idProducto,
+    descripcion,
+  };
+  console.log(obj);
+  ////YA TENEMOS EL JSON CON EL PEDIDO EN EL BACK
+};
+
 export const methods = {
   getProducts,
   addProduct,
@@ -177,4 +187,5 @@ export const methods = {
   pruebaIndex2,
   home,
   sendInfo,
+  enviarStringQr,
 };

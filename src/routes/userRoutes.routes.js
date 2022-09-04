@@ -9,5 +9,5 @@ router.get("/:idproducto", productsController.getProduct);
 router.delete("/:idproducto", productsController.deleteProduct);
 router.put("/:idproducto", productsController.updateProduct);
 router.post("/send", productsController.sendInfo);
-
+router.post("/qr/sendString", productsController.enviarStringQr);
 export default router;
