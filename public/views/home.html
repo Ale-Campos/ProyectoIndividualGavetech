@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="./../js/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="./../css/select2.css" />
+    <script src="./../js/select2/jquery-3.1.1.min.js"></script>
+    <script src="./../js/select2/select2.full.min.js"></script>
   </head>
   <body>
     <h1>HOME</h1>
@@ -17,9 +20,40 @@
       <input type="text" id="posicion" placeholder="Posicion" />
       <input type="number" id="categoria_id" placeholder="Id Categoria (1-5)" />
       <button type="submit" id="enviar" onclick="leerIngresos();">
-        Enviar
+        Agregar a Base de Datos
       </button>
     </div>
-    <a href="http://localhost:4000/index">Vamnos a index1</a>
+    <div>
+      <button id="mostrar" onclick="mostrarProductos();">
+        Mostrar Productos
+      </button>
+    </div>
+    
+    <div>
+      <table>
+        <thead>
+          <th>idProducto</th>
+          <th>Descripción</th>
+          <th>Imagen</th>
+          <th>Stock</th>
+          <th>Posicion</th>
+          <th>Categoria</th>
+        </thead>
+        <tbody id="tablaProductos"></tbody>
+      </table>
+    </div>
+    
+    <div style="text-align: left  ">
+      <h2>Buscador Select 2</h2>
+      <div style="text-align: right;"><ul id="listadoSeleccion"></ul></div>
+      <button id="agreagarAPedido" onclick="agregarAPedido();">Agregar</button>
+      <select id="select2" style="width: 40%">
+    </div>
+    
   </body>
 </html>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $("#select2").select2();
+  });
+</script>
