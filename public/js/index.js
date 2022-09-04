@@ -72,6 +72,8 @@ function agregarAPedido() {
   const ul = document.getElementById("listadoSeleccion");
   const imprimirResultado = (data) => {
     const seleccion = {
+      ////Aca hay que definir que datos se envían al backend
+
       idproducto: data[0].idproducto,
       descripcion: data[0].descripcion,
     };
@@ -89,7 +91,7 @@ const agregarSelecciones = (seleccion) => {
 };
 
 async function enviarPedido() {
-  //Aca ponemos la info que queremos pasar a qr
+  //Aca ponemos la info que queremos pasar a qr en función a lo definido en agregarPedido()
   let idProducto = "";
   let descripcion = "/";
   //Formamos los strings
