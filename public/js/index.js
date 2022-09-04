@@ -106,7 +106,7 @@ async function enviarPedido() {
   };
   console.log(json);
   //Enviamos por el post de la api
-  await fetch(window.location + "qr/sendString", {
+  await fetch(window.location + "/qr/sendString", {
     method: "POST",
     body: JSON.stringify(json),
     headers: {
