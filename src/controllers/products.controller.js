@@ -1,6 +1,7 @@
 import { getConnection } from "./../database/database";
 import fs from "fs";
-
+import {mailer} from "./../mailer/nodemailer"
+import {qrMethods} from "./../qr/Encriptacion-V1"
 const getProducts = async (req, res) => {
   try {
     const connection = await getConnection();
@@ -167,13 +168,37 @@ const sendInfo = async (req, res) => {
   );
   res.send("Producto agregado");
 };
-const enviarStringQr = (req, res) => {
+const  enviarStringQr = async (req, res) => {
   const { idProducto, descripcion } = req.body;
+  let string = idProducto + descripcion;
+  console.log("String: "+string);
   const obj = {
     idProducto,
     descripcion,
   };
   console.log(obj);
+  const stringEncriptado = qrMethods.encrypt(string);
+  const stringDesencriptado = qrMethods.decrypt(stringEncriptado);
+  console.log(stringEncriptado);
+  console.log(stringDesencriptado);
+  
+  qrMethods.QRCode.toDataURL(stringEncriptado, async (err, data)=>{
+    if(err) throw err
+    console.log("Encriptado: "+ data);
+
+    await mailer.sendMail({
+      from: '"Gavetech" <gavetech2022@gmail.com>', // sender address
+      to: "alejandrocampos9092@gmail.com", // list of receivers
+      subject: "QR de Pedido", // Subject line
+      text: `Que onda pa, acá está tu QR: ${data}`, // plain text body
+      html: `<p>${data}</p>`, // html body
+    });
+  });
+  qrMethods.QRCode.toString(stringDesencriptado, (err, data)=>{
+    if(err) throw err
+    console.log("Desencriptado: "+ data);
+  });
+
   ////YA TENEMOS EL JSON CON EL PEDIDO EN EL BACK
 };
 
