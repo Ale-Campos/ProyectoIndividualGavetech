@@ -119,7 +119,6 @@ async function enviarPedido() {
   function imprimirQr(data) {
     let div = document.getElementById("contenedorQr");
     let img = document.createElement("img");
-    console.log(data.url);
     img.src = data.url;
     div.appendChild(img);
   }
