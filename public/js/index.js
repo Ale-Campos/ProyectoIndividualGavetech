@@ -112,5 +112,15 @@ async function enviarPedido() {
     headers: {
       "Content-type": "application/json",
     },
-  });
+  })
+    .then((res) => res.json())
+    .then((data) => imprimirQr(data));
+
+  function imprimirQr(data) {
+    let div = document.getElementById("contenedorQr");
+    let img = document.createElement("img");
+    console.log(data.url);
+    img.src = data.url;
+    div.appendChild(img);
+  }
 }

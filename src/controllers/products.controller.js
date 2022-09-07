@@ -2,6 +2,8 @@ import { getConnection } from "./../database/database";
 import fs from "fs";
 import { mailer } from "./../mailer/nodemailer";
 import { qrMethods } from "./../qr/Encriptacion-V1";
+import path from "path";
+
 const getProducts = async (req, res) => {
   try {
     const connection = await getConnection();
@@ -90,7 +92,7 @@ const updateProduct = async (req, res) => {
       posicion === undefined ||
       categoria_id === undefined
     ) {
-      res.status(400).json({ message: "Llenar todos los campos" }); //Error de cliente
+      res.status(400).json({ message: "dLlenar todos los campos" }); //Error de cliente
     }
     const producto = {
       idproducto,
@@ -137,16 +139,7 @@ const pruebaIndex2 = (req, res) => {
   );
 };
 const home = (req, res) => {
-  res.writeHead(200, { "Content-Type": "text/html" });
-  fs.readFile(
-    __dirname + "./../../public/views/home.html",
-    null,
-    (err, data) => {
-      if (err) throw err;
-      res.write(data);
-      res.end();
-    }
-  );
+  res.sendFile(path.resolve(__dirname, "./../../public/views/home.html"));
 };
 
 const sendInfo = async (req, res) => {
@@ -171,34 +164,27 @@ const sendInfo = async (req, res) => {
 const enviarStringQr = async (req, res) => {
   const { idProducto, descripcion } = req.body;
   let string = idProducto + descripcion;
-  console.log("String: " + string);
+
   const obj = {
     idProducto,
     descripcion,
   };
-  console.log(obj);
-  const stringEncriptado = qrMethods.encrypt(string);
-  const stringDesencriptado = qrMethods.decrypt(stringEncriptado);
-  console.log(stringEncriptado);
-  console.log(stringDesencriptado);
 
-  qrMethods.QRCode.toString(stringEncriptado, async (err, data) => {
+  const stringEncriptado = qrMethods.encrypt(string);
+
+  qrMethods.QRCode.toDataURL(stringEncriptado, async (err, data) => {
     if (err) throw err;
-    await mailer.sendMail({
-      from: '"Gavetech" <gavetechahk@gmail.com>', // sender address
-      to: "alejandrocampos9092@gmail.com", // list of receivers
-      subject: "QR de Pedido", // Subject line
-      text: `Que onda pa, acá está tu QR: ${data}`, // plain text body
-      html: `<p>${data}</p>`, // html body
-    });
-  });
-  qrMethods.QRCode.toString(stringDesencriptado, (err, data) => {
-    if (err) throw err;
-    console.log("Desencriptado: " + data);
+    console.log(data);
+    //Recordar siempre trabajar con JSONs
+    const urldata = {
+      url: data,
+    };
+    res.json(urldata);
   });
 
   ////YA TENEMOS EL JSON CON EL PEDIDO EN EL BACK
 };
+export default enviarStringQr;
 
 export const methods = {
   getProducts,
