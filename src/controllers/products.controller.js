@@ -171,8 +171,9 @@ const enviarStringQr = async (req, res) => {
   };
 
   const stringEncriptado = qrMethods.encrypt(string);
-
-  qrMethods.QRCode.toDataURL(stringEncriptado, async (err, data) => {
+  const stringDesencriptado = qrMethods.decrypt(stringEncriptado);
+  ////CAMBIAR stringDesencriptado por stringEncriptado, es solo de preueba
+  qrMethods.QRCode.toDataURL(stringDesencriptado, async (err, data) => {
     if (err) throw err;
     console.log(data);
     //Recordar siempre trabajar con JSONs
