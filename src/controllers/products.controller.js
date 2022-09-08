@@ -1,6 +1,5 @@
 import { getConnection } from "./../database/database";
 import fs from "fs";
-import { mailer } from "./../mailer/nodemailer";
 import { qrMethods } from "./../qr/Encriptacion-V1";
 import path from "path";
 
@@ -39,10 +38,8 @@ const addProduct = async (req, res) => {
       categoria_id,
     };
     const connection = await getConnection();
-    const result = await connection.query(
-      `insert into producto SET ?`,
-      producto
-    );
+    await connection.query(
+      `insert into producto SET ?`,producto);
     res.send("Producto agregado");
   } catch (error) {
     res.status(500); //500 error de servidor
@@ -175,7 +172,6 @@ const enviarStringQr = async (req, res) => {
   ////CAMBIAR stringDesencriptado por stringEncriptado, es solo de preueba
   qrMethods.QRCode.toDataURL(stringDesencriptado, async (err, data) => {
     if (err) throw err;
-    console.log(data);
     //Recordar siempre trabajar con JSONs
     const urldata = {
       url: data,
