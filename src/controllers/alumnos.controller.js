@@ -2,19 +2,18 @@
 import {getConnection} from "./../database/database";
 import path from "path";
 
-////
+
 const register = async (req, res)=>{
-//try {
+
     
-    const {dni, nombre, apellido, email} = req;
-   // if(dni ===null||nombre === null ||apellido === null, email === null){
-        /*res.status(400).json({message: "Todos los campos son requeridos"})
-    }*/
+    const {dni, nombre, apellido, email, contraseña} = req.body;
+   
     const alumno = {
-        dni,
-        nombre,
-        apellido,
-        email
+        dni:dni,
+        nombre:nombre,
+        apellido:apellido,
+        email: email,
+        contraseña: contraseña
     }
     const connection = await getConnection()
     await connection.query(`insert into alumno SET ?`, alumno);
@@ -26,7 +25,7 @@ const register = async (req, res)=>{
 };
 
 const registerView = (req,res) =>{
-    res.sendFile(path.resolve(__dirname, "./../../public/views/login.html"));
+    res.sendFile(path.resolve(__dirname, "./../../public/views/register.html"));
 };
 
 

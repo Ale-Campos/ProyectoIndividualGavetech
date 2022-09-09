@@ -13,6 +13,6 @@ router.delete("/select/:idproducto", productsController.deleteProduct);
 router.put("/select/:idproducto", productsController.updateProduct);
 router.post("/send", productsController.sendInfo);
 router.post("/qr/sendString", productsController.enviarStringQr);
-router.post("/register/send",alumnosController.register);
+router.post("/register",alumnosController.register);
 router.get("/register", alumnosController.registerView);
 export default router;
