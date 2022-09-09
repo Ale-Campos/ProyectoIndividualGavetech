@@ -2,12 +2,14 @@
 import {getConnection} from "./../database/database";
 import path from "path";
 
+////
 const register = async (req, res)=>{
-try {
-    const {dni, nombre, apellido, email} = req.body;
-    if(dni ===null||nombre === null ||apellido === null, email === null){
-        res.send.json({message: "Todos los campos son requeridos"})
-    }
+//try {
+    
+    const {dni, nombre, apellido, email} = req;
+   // if(dni ===null||nombre === null ||apellido === null, email === null){
+        /*res.status(400).json({message: "Todos los campos son requeridos"})
+    }*/
     const alumno = {
         dni,
         nombre,
@@ -17,10 +19,10 @@ try {
     const connection = await getConnection()
     await connection.query(`insert into alumno SET ?`, alumno);
     res.send("Alumno agregado");
-} catch (error) {
-    res.send(500);
+/*} catch (error) {
+    res.sendStatus(500);
     res.send(error.message);
-}
+}*/
 };
 
 const registerView = (req,res) =>{

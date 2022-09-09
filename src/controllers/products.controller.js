@@ -178,10 +178,8 @@ const enviarStringQr = async (req, res) => {
     };
     res.json(urldata);
   });
-
-  ////YA TENEMOS EL JSON CON EL PEDIDO EN EL BACK
 };
-export default enviarStringQr;
+
 
 export const methods = {
   getProducts,

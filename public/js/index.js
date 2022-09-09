@@ -4,7 +4,7 @@ fetch(window.location + "/list")
   .then((data) => mostarData(data))
   .catch((err) => console.log(err));
 
-const mostarData = (data) => {
+  const mostarData = (data) => {
   console.log(data);
   const select2 = document.getElementById("select2");
   for (let index = 0; index < data.length; index++) {
@@ -65,7 +65,7 @@ async function mostrarProductos() {
 
 function agregarAPedido() {
   let select = document.getElementById("select2").value;
-  fetch(window.location + `/${select}`)
+  fetch(window.location + `/select/${select}`)
     .then((response) => response.json())
     .then((data) => imprimirResultado(data))
     .catch((err) => console.log(err));
@@ -122,4 +122,7 @@ async function enviarPedido() {
     img.src = data.url;
     div.appendChild(img);
   }
-}
+};
+
+
+
