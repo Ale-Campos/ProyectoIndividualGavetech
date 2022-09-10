@@ -3,7 +3,7 @@ import morgan from "morgan";
 
 //Router
 import products from "./routes/userRoutes.routes";
-import prueba from "./routes/pruebas.routes";
+import login from "./routes/login.routes";
 
 const app = express();
 
@@ -16,7 +16,7 @@ app.use(morgan("dev"));
 app.use(express.json()); //Aclaramos que el servidor pueda procesar JSON
 //Routes
 app.use("/home", products);
-app.use("/prueba", prueba);
+app.use("/register", login);
 
 //Archivos estáticos
 app.use(express.static("public"));

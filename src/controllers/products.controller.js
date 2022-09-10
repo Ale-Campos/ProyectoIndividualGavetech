@@ -38,8 +38,7 @@ const addProduct = async (req, res) => {
       categoria_id,
     };
     const connection = await getConnection();
-    await connection.query(
-      `insert into producto SET ?`,producto);
+    await connection.query(`insert into producto SET ?`, producto);
     res.send("Producto agregado");
   } catch (error) {
     res.status(500); //500 error de servidor
@@ -179,7 +178,6 @@ const enviarStringQr = async (req, res) => {
     res.json(urldata);
   });
 };
-
 
 export const methods = {
   getProducts,
