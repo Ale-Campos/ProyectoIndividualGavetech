@@ -12,7 +12,7 @@ function login() {
 async function enviarInfo(alumno) {
   let jsonString = JSON.stringify(alumno);
   console.log(jsonString);
-  await fetch(window.location + "/verify", {
+  await fetch(window.location + "verify", {
     method: "POST",
     body: JSON.stringify(alumno),
     headers: {

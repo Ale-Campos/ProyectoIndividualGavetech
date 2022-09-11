@@ -16,11 +16,11 @@ const login = async (req, res) => {
   } else {
     console.log("Las contraseñas no coinciden");
   }
-  res.sendFile(path.resolve(__dirname, "./../../public/views/login.html"));
+
   res.redirect("http://localhost:4000/home/");
 };
 const loginView = (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./../../public/views/login.html"));
+  res.render("login");
 };
 
 const prueba = (req, res) => {

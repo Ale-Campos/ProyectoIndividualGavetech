@@ -135,7 +135,7 @@ const pruebaIndex2 = (req, res) => {
   );
 };
 const home = (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./../../public/views/home.html"));
+  res.render("home");
 };
 
 const sendInfo = async (req, res) => {
