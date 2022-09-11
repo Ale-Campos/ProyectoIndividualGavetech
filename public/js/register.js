@@ -27,6 +27,7 @@ function agregarAlumno() {
 }
 
 async function enviarInfo(alumno) {
+  let result;
   let jsonString = JSON.stringify(alumno);
   console.log(jsonString);
   await fetch(window.location, {
@@ -35,5 +36,14 @@ async function enviarInfo(alumno) {
     headers: {
       "Content-type": "application/json",
     },
-  });
+  })
+    .then((response) => response.json())
+    .then((data) => (result = data));
+  console.log(result);
+  if (result.result == "correcto") {
+    window.alert("todo correct");
+    window.location.href = result.redirect;
+  } else {
+    window.alert("Coso existente");
+  }
 }

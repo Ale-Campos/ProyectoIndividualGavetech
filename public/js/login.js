@@ -29,17 +29,20 @@ async function enviarInfo(alumno) {
     .then((data) => (responseJson = data));
   console.log(responseJson);
   result = responseJson.result;
-  let url = responseJson.redirect;
-  if (result) {
-    redirect(url);
-  } else {
-    window.alert(
-      "Usuario o contraseña inexistente, ingrese nuevamente o regístrese"
-    );
-    let contenedor = document.getElementById("botonRegister");
-    let boton = document.createElement("button");
-    boton.textContent = "Registrate";
-    contenedor.appendChild(boton);
+  switch (result) {
+    case "correcto":
+      let url = responseJson.redirect;
+      redirect(url);
+      break;
+    case "incompleto":
+      window.alert("Debe completar el formulario");
+      break;
+    case "inexistente":
+      window.alert("No hay ningun usuaio con ese mail");
+      break;
+    case "contraseña invalida":
+      window.alert("Contraseña incorrecta");
+      break;
   }
 }
 function redirect(url) {

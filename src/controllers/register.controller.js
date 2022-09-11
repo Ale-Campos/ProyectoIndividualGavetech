@@ -14,8 +14,19 @@ const register = async (req, res) => {
     contraseña: contraseñaHash,
   };
   const connection = await getConnection();
-  await connection.query(`insert into alumno SET ?`, alumno);
-  res.send("Todo correcto");
+  await connection.query(`insert into alumno SET ?`, alumno, (err, data) => {
+    if (err) {
+      res.json({
+        result: "existente",
+        redirect: "",
+      });
+    } else {
+      res.json({
+        result: "correcto",
+        redirect: "http://localhost:4000/login/",
+      });
+    }
+  });
 };
 
 const registerView = (req, res) => {

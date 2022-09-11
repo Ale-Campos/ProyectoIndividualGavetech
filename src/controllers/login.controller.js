@@ -3,22 +3,40 @@ import path from "path";
 import bcryptjs from "bcryptjs";
 
 const login = async (req, res) => {
-  console.log(req.body);
   const { email, contraseña } = req.body;
-  const connection = await getConnection();
-  let alumno = await connection.query(
-    `SELECT * FROM alumno WHERE email = '${email}'`
-  );
-  console.log(alumno);
-  console.log("Contraseña: " + alumno[0].contraseña);
-  if (await bcryptjs.compare(contraseña, alumno[0].contraseña)) {
-    console.log("Las contraseñas coinciden");
+  if (email == "" || contraseña == "") {
+    console.log("Formulario incompleto");
     res.json({
-      result: true,
-      redirect: "http://localhost:4000/home/",
+      result: "incompleto",
+      redirect: "",
     });
   } else {
-    console.log("Las contraseñas no coinciden");
+    const connection = await getConnection();
+    let alumno = await connection.query(
+      `SELECT * FROM alumno WHERE email = '${email}'`
+    );
+    if (alumno.length === 0) {
+      console.log("No hay alumnos con ese mail");
+      res.json({
+        result: "inexistente",
+        redirect: "",
+      });
+    } else {
+      console.log("Contraseña: " + alumno[0].contraseña);
+      if (await bcryptjs.compare(contraseña, alumno[0].contraseña)) {
+        console.log("Las contraseñas coinciden");
+        res.json({
+          result: "correcto",
+          redirect: "http://localhost:4000/home/",
+        });
+      } else {
+        console.log("Las contraseñas no coinciden");
+        res.json({
+          result: "contraseña invalida",
+          redirect: "",
+        });
+      }
+    }
   }
 };
 const loginView = (req, res) => {
