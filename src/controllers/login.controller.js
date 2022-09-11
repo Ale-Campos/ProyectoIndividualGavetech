@@ -13,11 +13,13 @@ const login = async (req, res) => {
   console.log("Contraseña: " + alumno[0].contraseña);
   if (await bcryptjs.compare(contraseña, alumno[0].contraseña)) {
     console.log("Las contraseñas coinciden");
+    res.json({
+      result: true,
+      redirect: "http://localhost:4000/home/",
+    });
   } else {
     console.log("Las contraseñas no coinciden");
   }
-
-  res.redirect("http://localhost:4000/home/");
 };
 const loginView = (req, res) => {
   res.render("login");
