@@ -1,3 +1,4 @@
+const urlPrincipal = "http://localhost:4000";
 function agregarAlumno() {
   const dni = document.querySelector("#dni").value;
   const nombre = document.querySelector("#nombre").value;
@@ -46,4 +47,11 @@ async function enviarInfo(alumno) {
   } else {
     window.alert("Coso existente");
   }
+}
+
+function login(){
+  redirect(urlPrincipal + "/login");
+}
+function redirect(url){
+  window.location.href=url;
 }

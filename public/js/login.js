@@ -39,7 +39,7 @@ async function enviarInfo(alumno) {
       window.alert("Debe completar el formulario");
       break;
     case "inexistente":
-      window.alert("No hay ningun usuaio con ese mail");
+      window.alert("No hay ningun usuario con ese mail");
       break;
     case "contraseña invalida":
       window.alert("Contraseña incorrecta");
