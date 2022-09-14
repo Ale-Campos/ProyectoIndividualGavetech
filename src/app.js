@@ -6,7 +6,7 @@ import path from "path";
 import products from "./routes/userRoutes.routes";
 import register from "./routes/register.routes";
 import login from "./routes/login.routes";
-
+import menuAlumno from "./routes/menuAlumno.routes";
 const app = express();
 
 //Configs
@@ -22,6 +22,7 @@ app.use(express.json()); //Aclaramos que el servidor pueda procesar JSON
 app.use("/home", products);
 app.use("/register", register);
 app.use("/login", login);
+app.use("/menuAlumno", menuAlumno);
 //Archivos estáticos
 app.use(express.static("public"));
 
