@@ -5,7 +5,7 @@ import bcryptjs from "bcryptjs";
 const register = async (req, res) => {
   const { dni, nombre, apellido, email, contraseña } = req.body;
   let contraseñaHash = await bcryptjs.hash(contraseña, 8);
-
+  console.log(req.body);
   const alumno = {
     dni: dni,
     nombre: nombre,
@@ -16,6 +16,8 @@ const register = async (req, res) => {
   const connection = await getConnection();
   await connection.query(`insert into alumno SET ?`, alumno, (err, data) => {
     if (err) {
+      console.log("Hay un error");
+      console.log(err);
       res.json({
         result: "existente",
         redirect: "",
