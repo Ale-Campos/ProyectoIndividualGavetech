@@ -1,3 +1,3 @@
 function generarPedido() {
-  window.location.href = window.location + "generarPedido";
+  window.location.href = window.location + "/generarPedido";
 }
