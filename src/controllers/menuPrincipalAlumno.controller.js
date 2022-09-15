@@ -7,6 +7,8 @@ const generarPedido = (req, res) => {
   res.render("GenerarPedido");
 };
 
+
+
 export const menuAlumnoMethods = {
   menuPrincipal,
   generarPedido,

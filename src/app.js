@@ -7,6 +7,8 @@ import products from "./routes/userRoutes.routes";
 import register from "./routes/register.routes";
 import login from "./routes/login.routes";
 import menuAlumno from "./routes/menuAlumno.routes";
+import menuProfesor from "./routes/menuProfesor.routes";
+import generarPedidos from "./routes/pedidos.routes"
 const app = express();
 
 //Configs
@@ -23,6 +25,8 @@ app.use("/home", products);
 app.use("/register", register);
 app.use("/login", login);
 app.use("/menuAlumno", menuAlumno);
+app.use("/menuProfesor",menuProfesor);
+app.use("/generarPedido",generarPedidos)
 //Archivos estáticos
 app.use(express.static("public"));
 

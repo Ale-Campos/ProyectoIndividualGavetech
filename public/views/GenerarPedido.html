@@ -11,6 +11,7 @@
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <script src="./../js/select2/jquery-3.1.1.min.js"></script>
   <script src="./../js/select2/select2.full.min.js"></script>
+  <script src="./../js/generarPedido.js"></script>
 </head>
 
 <body>
@@ -29,161 +30,23 @@
     <div class="bloque1">
       <h2>Selección de Componentes</h2>
       <div id="prod1">
-        <form>
           <label for="producto">Componente:</label>
-          <select class="js-box2" name="producto1" id="producto1">
-            <optgroup label="Led">
-              <option value="led3">Led 3mm</option>
-              <option value="led5">Led 5mm</option>
-            </optgroup>
-            <optgroup label="Resistencias">
-            <option value="res1/2">Resistencia 1/2W</option>
-            <option value="res1/4">Resistencia 1/4W</option>
-            </optgroup>
-            <optgroup label="Switchs">
-            <option value="ds4">Dip Switch 4</option>
-            <option value="ds8">Dip Switch 8</option>
-            </optgroup>
+          <select class="js-box2" name="producto1" id="select2">
+
           </select>
           <label for="cant">Cantidad:</label>
           <input class="box2" type="number" id="cant1" name="cant1" min="1">
           <input class="box3" type="button" id="but2" value="Añadir Producto" onclick="Transicion2();">
-        </form>
+        
         <br><br>
       </div>
     </div>
 
-      <div id="prod2">
-        <form>
-          <label for="producto">Componente:</label>
-          <select class="js-box2" name="producto1" id="producto1">
-            <optgroup label="Led">
-              <option value="led3">Led 3mm</option>
-              <option value="led5">Led 5mm</option>
-            </optgroup>
-            <optgroup label="Resistencias">
-            <option value="res1/2">Resistencia 1/2W</option>
-            <option value="res1/4">Resistencia 1/4W</option>
-            </optgroup>
-            <optgroup label="Switchs">
-            <option value="ds4">Dip Switch 4</option>
-            <option value="ds8">Dip Switch 8</option>
-            </optgroup>
-          </select>
-          <label for="cant">Cantidad:</label>
-          <input class="box2" type="number" id="cant2" name="cant2" min="1">
-          <input class="box3" type="button" id="but3" value="Añadir Producto" onclick="Transicion3();">
-        </form>
-        <br><br>
-      </div>
-
-      <div id="prod3">
-        <form>
-          <label for="producto">Componente:</label>
-          <select class="js-box2" name="producto1" id="producto1">
-            <optgroup label="Led">
-              <option value="led3">Led 3mm</option>
-              <option value="led5">Led 5mm</option>
-            </optgroup>
-            <optgroup label="Resistencias">
-            <option value="res1/2">Resistencia 1/2W</option>
-            <option value="res1/4">Resistencia 1/4W</option>
-            </optgroup>
-            <optgroup label="Switchs">
-            <option value="ds4">Dip Switch 4</option>
-            <option value="ds8">Dip Switch 8</option>
-            </optgroup>
-          </select>
-          <label for="cant">Cantidad:</label>
-          <input class="box2" type="number" id="cant3" name="cant3" min="1">
-          <input class="box3" type="button" id="but4" value="Añadir Producto" onclick="Transicion4();">
-        </form>
-        <br><br>
-      </div>
-
-      <div id="prod4">
-        <form>
-          <label for="producto">Componente:</label>
-          <select class="js-box2" name="producto1" id="producto1">
-            <optgroup label="Led">
-              <option value="led3">Led 3mm</option>
-              <option value="led5">Led 5mm</option>
-            </optgroup>
-            <optgroup label="Resistencias">
-            <option value="res1/2">Resistencia 1/2W</option>
-            <option value="res1/4">Resistencia 1/4W</option>
-            </optgroup>
-            <optgroup label="Switchs">
-            <option value="ds4">Dip Switch 4</option>
-            <option value="ds8">Dip Switch 8</option>
-            </optgroup>
-          </select>
-          <label for="cant">Cantidad:</label>
-          <input class="box2" type="number" id="cant4" name="cant4" min="1">
-          <input class="box3" type="button" id="but5" value="Añadir Producto" onclick="Transicion5();">
-        </form>
-        <br><br>
-      </div>
-
-      <div id="prod4">
-        <form>
-          <label for="producto">Componente:</label>
-          <select class="js-box2" name="producto1" id="producto1">
-            <optgroup label="Led">
-              <option value="led3">Led 3mm</option>
-              <option value="led5">Led 5mm</option>
-            </optgroup>
-            <optgroup label="Resistencias">
-            <option value="res1/2">Resistencia 1/2W</option>
-            <option value="res1/4">Resistencia 1/4W</option>
-            </optgroup>
-            <optgroup label="Switchs">
-            <option value="ds4">Dip Switch 4</option>
-            <option value="ds8">Dip Switch 8</option>
-            </optgroup>
-          </select>
-          <label for="cant">Cantidad:</label>
-          <input class="box2" type="number" id="cant4" name="cant4" min="1">
-          <input class="box3" type="button" id="but5" value="Añadir Producto" onclick="Transicion5();">
-        </form>
-        <br><br>
-      </div>
-
-      <div id="prod5">
-        <form>
-          <label for="producto5">Componente:</label>
-          <select class="box2" id="producto5" name="producto5">
-            <option value="sp">Seleccione un componente</option>
-            <option value="trans">Transistor</option>
-            <option value="res">Resistencias</option>
-            <option value="mic">Microcontroladores</option>
-            <option value="dd">Diodos</option>
-          </select>
-          <label for="cant5">Cantidad:</label>
-          <input class="box2" type="number" id="cant5" name="cant5" min="1">
-        </form>
-      </div>
-    </div>
+      
 
 
     <script>
-      function Transicion2() {
-        document.getElementById("but2").style.display = "none";
-        document.getElementById("prod2").style.display = "block";
-      }
-      function Transicion3() {
-        document.getElementById("but3").style.display = "none";
-        document.getElementById("prod3").style.display = "block";
-      }
-      function Transicion4() {
-        document.getElementById("but4").style.display = "none";
-        document.getElementById("prod4").style.display = "block";
-      }
-      function Transicion5() {
-        document.getElementById("but5").style.display = "none";
-        document.getElementById("prod5").style.display = "block";
-      }
-
+      
       // In your Javascript (external .js resource or <script> tag)
       $(document).ready(function () {
         $('.js-box2').select2();
