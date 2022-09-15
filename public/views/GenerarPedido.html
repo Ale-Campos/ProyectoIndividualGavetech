@@ -36,15 +36,18 @@
           </select>
           <label for="cant">Cantidad:</label>
           <input class="box2" type="number" id="cant1" name="cant1" min="1">
-          <input class="box3" type="button" id="but2" value="Añadir Producto" onclick="Transicion2();">
+          <button id="agreagarAPedido" onclick="agregarAPedido();">Agregar</button>
         
         <br><br>
       </div>
     </div>
-
-      
-
-
+    <div>
+      <div><ul id="listadoSeleccion"></ul></div>
+      <div style="text-align: right;">
+        <button id="enviarPedido" onclick="enviarPedido();">Enviar Pedido</button>
+        <div id="contenedorQr"></div>
+      </div>
+    </div>
     <script>
       
       // In your Javascript (external .js resource or <script> tag)

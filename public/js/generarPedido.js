@@ -15,3 +15,66 @@ fetch(window.location + "/list")//MODIFICAR ESTA DIRECCION
     select2.appendChild(option);
   }
 };
+
+function agregarAPedido() {
+    let select = document.getElementById("select2").value;
+    fetch(window.location + `/select/${select}`)
+      .then((response) => response.json())
+      .then((data) => imprimirResultado(data))
+      .catch((err) => console.log(err));
+    const ul = document.getElementById("listadoSeleccion");
+    const cantidad = document.querySelector("#cant1").value;//ESTO DEVUELVE UNDEFINED
+    const imprimirResultado = (data) => {
+      const seleccion = {
+        ////Aca hay que definir que datos se envían al backend
+  
+        idproducto: data[0].idproducto,
+        cantidad: cantidad,
+      };
+      agregarSelecciones(seleccion);
+      console.log("Selecciones");
+      console.log(selecciones);
+      let li = document.createElement("li");
+  
+      li.textContent = `IdProucto: ${data[0].idproducto} Descripcion: ${data[0].descripcion}`;
+      ul.appendChild(li);
+    };
+  }
+  const agregarSelecciones = (seleccion) => {
+    selecciones.push(seleccion);
+  };
+  
+  async function enviarPedido() {
+    //Aca ponemos la info que queremos pasar a qr en función a lo definido en agregarPedido()
+    let idProducto = "";
+    let descripcion = "/";
+    //Formamos los strings
+    selecciones.forEach((x) => {
+      idProducto = idProducto + `${x.idproducto},`;
+      descripcion = descripcion + `${x.descripcion},`;
+    });
+    //Creamos el json a enviar
+    let json = {
+      idProducto: idProducto,
+      descripcion: descripcion,
+    };
+    console.log(json);
+    //Enviamos por el post de la api
+    await fetch(window.location + "/qr/sendString", {
+      method: "POST",
+      body: JSON.stringify(json),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => imprimirQr(data));
+  
+    function imprimirQr(data) {
+      let div = document.getElementById("contenedorQr");
+      let img = document.createElement("img");
+      img.src = data.url;
+      div.appendChild(img);
+    }
+  };
+  
