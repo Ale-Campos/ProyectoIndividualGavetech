@@ -4,6 +4,7 @@ const router = Router();
 
 router.get("/", loginController.loginView);
 router.post("/", loginController.login);
-router.get("/pruebaRedirect", loginController.prueba);
+router.get("/prueba", loginController.prueba);
+router.get("/prueba/deslog", loginController.pruebaDeslog);
 
 export default router;
