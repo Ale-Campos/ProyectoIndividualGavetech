@@ -1,8 +1,13 @@
 import { getConnection } from "../database/database";
 import { qrMethods } from "./../qr/Encriptacion-V1";
 import { usuarioLogueado } from "./login.controller";
+
 const generarPedido = (req, res) => {
-  res.render("GenerarPedido");
+  if (usuarioLogueado.estaLogeado) {
+    res.render("GenerarPedido");
+  } else {
+    res.render("AccesoDenegado");
+  }
 };
 const getProducts = async (req, res) => {
   try {

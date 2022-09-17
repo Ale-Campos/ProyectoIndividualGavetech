@@ -1,8 +1,12 @@
+import { usuarioLogueado } from "./login.controller";
+const menuPrincipal = (req, res) => {
+  if (usuarioLogueado.esProfesor) {
+    res.render("menuProfesor");
+  } else {
+    res.render("AccesoDenegado");
+  }
+};
 
-const menuPrincipal = (req,res) =>{
-res.render("menuProfesor");
-}
-
-export const menuProfesorMethods ={
-    menuPrincipal
-}
+export const menuProfesorMethods = {
+  menuPrincipal,
+};

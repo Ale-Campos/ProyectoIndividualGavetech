@@ -1,15 +1,14 @@
 import { getConnection } from "../database/database";
+import { usuarioLogueado } from "./login.controller";
 
 const menuPrincipal = (req, res) => {
-  res.render("MenuAlumno");
+  if (usuarioLogueado.estaLogeado) {
+    res.render("MenuAlumno");
+  } else {
+    res.render("AccesoDenegado");
+  }
 };
-const generarPedido = (req, res) => {
-  res.render("GenerarPedido");
-};
-
-
 
 export const menuAlumnoMethods = {
   menuPrincipal,
-  generarPedido,
 };
