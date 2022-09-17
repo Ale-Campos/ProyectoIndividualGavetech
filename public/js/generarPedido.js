@@ -1,10 +1,10 @@
 let selecciones = [];
-fetch(window.location + "/list")//MODIFICAR ESTA DIRECCION
+fetch(window.location + "/list") //MODIFICAR ESTA DIRECCION
   .then((response) => response.json())
   .then((data) => mostarData(data))
   .catch((err) => console.log(err));
 
-  const mostarData = (data) => {
+const mostarData = (data) => {
   console.log(data);
   const select2 = document.getElementById("select2");
   for (let index = 0; index < data.length; index++) {
@@ -17,64 +17,63 @@ fetch(window.location + "/list")//MODIFICAR ESTA DIRECCION
 };
 
 function agregarAPedido() {
-    let select = document.getElementById("select2").value;
-    fetch(window.location + `/select/${select}`)
-      .then((response) => response.json())
-      .then((data) => imprimirResultado(data))
-      .catch((err) => console.log(err));
-    const ul = document.getElementById("listadoSeleccion");
-    const cantidad = document.getElementById("cant1").value;//ESTO DEVUELVE UNDEFINED
-    const imprimirResultado = (data) => {
-      const seleccion = {
-        ////Aca hay que definir que datos se envían al backend
-  
-        idproducto: data[0].idproducto,
-        cantidad: cantidad,
-      };
-      agregarSelecciones(seleccion);
-      console.log("Selecciones");
-      console.log(selecciones);
-      let li = document.createElement("li");
-  
-      li.textContent = `IdProucto: ${data[0].idproducto} Descripcion: ${data[0].descripcion}`;
-      ul.appendChild(li);
-    };
-  }
-  const agregarSelecciones = (seleccion) => {
-    selecciones.push(seleccion);
-  };
-  
-  async function enviarPedido() {
-    //Aca ponemos la info que queremos pasar a qr en función a lo definido en agregarPedido()
-    let idProducto = "";
-    let cantidad = "/";
-    //Formamos los strings
-    selecciones.forEach((x) => {
-      idProducto = idProducto + `${x.idproducto},`;
-      cantidad = cantidad + `${x.cantidad},`;
-    });
-    //Creamos el json a enviar
-    let json = {
-      idProducto: idProducto,
+  let select = document.getElementById("select2").value;
+  fetch(window.location + `/select/${select}`)
+    .then((response) => response.json())
+    .then((data) => imprimirResultado(data))
+    .catch((err) => console.log(err));
+  const ul = document.getElementById("listadoSeleccion");
+  const cantidad = document.getElementById("cant1").value;
+  const imprimirResultado = (data) => {
+    const seleccion = {
+      ////Aca hay que definir que datos se envían al backend
+
+      idproducto: data[0].idproducto,
       cantidad: cantidad,
     };
-    console.log(json);
-    //Enviamos por el post de la api
-    await fetch(window.location + "/qr/sendString", {
-      method: "POST",
-      body: JSON.stringify(json),
-      headers: {
-        "Content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => imprimirQr(data));
-  
-    function imprimirQr(data) {
-      let div = document.getElementById("contenedorQr");
-      let img = document.createElement("img");
-      img.src = data.url;
-      div.appendChild(img);
-    }
+    agregarSelecciones(seleccion);
+    console.log("Selecciones");
+    console.log(selecciones);
+    let li = document.createElement("li");
+
+    li.textContent = `IdProucto: ${data[0].idproducto} Descripcion: ${data[0].descripcion} Cantidad: ${cantidad}`;
+    ul.appendChild(li);
   };
-  
+}
+const agregarSelecciones = (seleccion) => {
+  selecciones.push(seleccion);
+};
+
+async function enviarPedido() {
+  //Aca ponemos la info que queremos pasar a qr en función a lo definido en agregarPedido()
+  let idProducto = "";
+  let cantidad = "/";
+  //Formamos los strings
+  selecciones.forEach((x) => {
+    idProducto = idProducto + `${x.idproducto},`;
+    cantidad = cantidad + `${x.cantidad},`;
+  });
+  //Creamos el json a enviar
+  let json = {
+    idProducto: idProducto,
+    cantidad: cantidad,
+  };
+  console.log(json);
+  //Enviamos por el post de la api
+  await fetch(window.location + "/qr/sendString", {
+    method: "POST",
+    body: JSON.stringify(json),
+    headers: {
+      "Content-type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => imprimirQr(data));
+
+  function imprimirQr(data) {
+    let div = document.getElementById("contenedorQr");
+    let img = document.createElement("img");
+    img.src = data.url;
+    div.appendChild(img);
+  }
+}

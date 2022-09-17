@@ -87,7 +87,7 @@ const pruebaDeslog = (req, res) => {
   usuario.apellido = null;
   res.json(usuario);
 };
-
+export const usuarioLogueado = usuario;
 export const loginMethods = {
   login,
   loginView,

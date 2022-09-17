@@ -33,7 +33,7 @@ async function enviarInfo(alumno) {
   switch (result) {
     case "correcto":
       let url = responseJson.redirect;
-      localStorage.setItem("Usuario", jsonString);//LOCAL STORAGE
+
       console.log(jsonString);
       redirect(url);
       break;
@@ -47,7 +47,7 @@ async function enviarInfo(alumno) {
       window.alert("Contraseña incorrecta");
       break;
   }
-};
+}
 function redirect(url) {
   window.location.href = url;
 }
