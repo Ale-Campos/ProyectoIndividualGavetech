@@ -80,6 +80,7 @@ const prueba = (req, res) => {
   res.json(usuario);
 };
 const pruebaDeslog = (req, res) => {
+  usuario.id=0;
   usuario.esProfesor = false;
   usuario.estaLogeado = false;
   usuario.dni = null;
