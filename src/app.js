@@ -8,7 +8,8 @@ import register from "./routes/register.routes";
 import login from "./routes/login.routes";
 import menuAlumno from "./routes/menuAlumno.routes";
 import menuProfesor from "./routes/menuProfesor.routes";
-import generarPedidos from "./routes/pedidos.routes"
+import generarPedidos from "./routes/pedidos.routes";
+import misPedodos from "./routes/misPedidos.routes";
 const app = express();
 
 //Configs
@@ -25,8 +26,9 @@ app.use("/home", products);
 app.use("/register", register);
 app.use("/login", login);
 app.use("/menuAlumno", menuAlumno);
-app.use("/menuProfesor",menuProfesor);
-app.use("/generarPedido",generarPedidos)
+app.use("/menuProfesor", menuProfesor);
+app.use("/generarPedido", generarPedidos);
+app.use("/misPedidos", misPedodos);
 //Archivos estáticos
 app.use(express.static("public"));
 

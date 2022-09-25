@@ -3,6 +3,7 @@ function agregarAlumno() {
   const dni = document.querySelector("#dni").value;
   const nombre = document.querySelector("#nombre").value;
   const apellido = document.querySelector("#apellido").value;
+  const curso = document.querySelector("#curso").value;
   const email = document.querySelector("#email").value;
   const contraseña = document.querySelector("#contraseña").value;
   console.log(nombre);
@@ -11,7 +12,8 @@ function agregarAlumno() {
     nombre === "" ||
     apellido === "" ||
     email === "" ||
-    contraseña === ""
+    contraseña === "" ||
+    curso === ""
   ) {
     window.alert("Todos los campos son requeridos");
   } else {
@@ -21,6 +23,7 @@ function agregarAlumno() {
       apellido: apellido,
       email: email,
       contraseña: contraseña,
+      curso: curso,
     };
     console.log(alumno);
     enviarInfo(alumno);
@@ -49,9 +52,9 @@ async function enviarInfo(alumno) {
   }
 }
 
-function login(){
+function login() {
   redirect(urlPrincipal + "/login");
 }
-function redirect(url){
-  window.location.href=url;
+function redirect(url) {
+  window.location.href = url;
 }

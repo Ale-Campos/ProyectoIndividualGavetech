@@ -7,7 +7,6 @@ router.get("/", productsController.home);
 router.get("/list", productsController.getProducts);
 router.post("/", productsController.addProduct);
 
-////FLACO ARREGLA LOS REQUESTS DE ESTA MIERDA
 router.get("/select/:idproducto", productsController.getProduct);
 router.delete("/select/:idproducto", productsController.deleteProduct);
 router.put("/select/:idproducto", productsController.updateProduct);

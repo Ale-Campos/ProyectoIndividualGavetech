@@ -4,5 +4,5 @@ import { menuAlumnoMethods as menuAlumnoController } from "../controllers/menuPr
 const router = Router();
 
 router.get("/", menuAlumnoController.menuPrincipal);
-
+router.get("/misPedidos", menuAlumnoController.misPedidos);
 export default router;
