@@ -66,9 +66,9 @@ date = date.getUTCFullYear() + '-' +
 console.log(date);
     await connection.query(`insert into pedido (alumnocurso_id,fecha,string_qr) values (${objetoIdAlumno[0].idalumnocurso}, '${date}','${data}')`)
     const urlDb = await connection.query(`SELECT string_qr 
-    FROM alumnocurso inner join pedido on alumnocurso_id=${objetoIdAlumno[0].idalumnocurso};`);//CONSULTA SQL PARA OBTENER EL QR E INSERTARLA EN UNA IMAGEN
+    FROM alumnocurso inner join pedido on alumnocurso_id=${objetoIdAlumno[0].idalumnocurso};`);//CONSULTA SQL PARA OBTENER EL QR E INSERTARLA EN UNA IMAGEN. ESTA COSNULTA SOLO TRAE EL PRIMER REGISTRO, NO TRAE EL RESTO.
     
-    const urlObj = JSON.parse(JSON.stringify(urlDb))[0].string_qr;
+    const urlObj = JSON.parse(JSON.stringify(urlDb))[0].string_qr;//Hay que hacer que esto pase el string y que en el js de front lo recorra e imprima las cosas.
     console.log(urlObj);
     const urldata = {
       url: urlObj,
