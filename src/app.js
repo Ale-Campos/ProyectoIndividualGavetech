@@ -10,6 +10,7 @@ import menuAlumno from "./routes/menuAlumno.routes";
 import menuProfesor from "./routes/menuProfesor.routes";
 import generarPedidos from "./routes/pedidos.routes";
 import misPedodos from "./routes/misPedidos.routes";
+import pedidosPendientes from "./routes/pedidosPendientes.routes";
 const app = express();
 
 //Configs
@@ -29,6 +30,7 @@ app.use("/menuAlumno", menuAlumno);
 app.use("/menuProfesor", menuProfesor);
 app.use("/generarPedido", generarPedidos);
 app.use("/misPedidos", misPedodos);
+app.use("/pedidosPendientes", pedidosPendientes);
 //Archivos estáticos
 app.use(express.static("public"));
 

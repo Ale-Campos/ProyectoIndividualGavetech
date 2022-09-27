@@ -6,7 +6,11 @@ const menuPrincipal = (req, res) => {
     res.render("AccesoDenegado");
   }
 };
+const pedidosPendientes = (req, res) => {
+  res.render("solicitudesPendientes");
+};
 
 export const menuProfesorMethods = {
   menuPrincipal,
+  pedidosPendientes,
 };
