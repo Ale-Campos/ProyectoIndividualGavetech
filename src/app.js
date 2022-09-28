@@ -12,6 +12,7 @@ import generarPedidos from "./routes/pedidos.routes";
 import misPedodos from "./routes/misPedidos.routes";
 import pedidosPendientes from "./routes/pedidosPendientes.routes";
 import pedidosAprobados from "./routes/pedidosAprobados.routes";
+import gestProductos from "./routes/gestPedidos.routes";
 const app = express();
 
 //Configs
@@ -32,7 +33,8 @@ app.use("/menuProfesor", menuProfesor);
 app.use("/generarPedido", generarPedidos);
 app.use("/misPedidos", misPedodos);
 app.use("/pedidosPendientes", pedidosPendientes);
-app.use("/pedidosAprobados", pedidosAprobados)
+app.use("/pedidosAprobados", pedidosAprobados);
+app.use("/gestionarPedidos", gestProductos);
 //Archivos estáticos
 app.use(express.static("public"));
 

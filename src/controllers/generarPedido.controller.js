@@ -50,7 +50,6 @@ const enviarStringQr = async (req, res) => {
   ////CAMBIAR stringDesencriptado por stringEncriptado, es solo de preueba
   qrMethods.QRCode.toDataURL(stringDesencriptado, async (err, data) => {
     if (err) throw err;
-    //Recordar siempre trabajar con JSONs
     
     const idAlumnoCurso= JSON.stringify(await connection.query(`select idalumnocurso from alumnocurso where alumno_id = ${usuarioLogueado.id} `))
     console.log(idAlumnoCurso);

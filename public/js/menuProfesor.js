@@ -13,3 +13,7 @@ async function cerrarSesion() {
 async function solicitudesAprobadas() {
   window.location.href = window.location + "solicitudesAprobadas";
 }
+
+async function gestPedidos() {
+  window.location.href = urlPrincipal + "/gestionarPedidos";
+}

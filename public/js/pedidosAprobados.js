@@ -1,5 +1,5 @@
 const urlPrincipal = "http://localhost:4000";
-let pedidos = null;
+
 fetch(urlPrincipal + "/pedidosAprobados")
   .then((response) => response.json())
   .then((data) => mostarData(data))

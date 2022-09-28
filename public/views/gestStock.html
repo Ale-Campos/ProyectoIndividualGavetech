@@ -2,48 +2,50 @@
 <html lang="en">
 
 <head>
-    <title>GaveTech</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-
-    scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
     <link rel="stylesheet" href="./../css/style.css">
     <script src="https://kit.fontawesome.com/08d50d8048.js" crossorigin="anonymous"></script>
-    <script src="./../js/pedidosAprobados.js"></script>
+    <script src="./../js/gestPedidos.js"></script>
+    <title>Gavetech</title>
+</head>
 
 <body>
     <header>
         <div class="logo">
-            <img src="./../img/ahk2.jpg" alt="Logo Holters" class="logo-img">
+            <img src="img/ahk2.jpg" alt="Logo AHK" class="logo-img">
         </div>
         <nav>
             <a href="./../REGISTRARSE-LOGEARSE/login.html" class="deslog">Cerrar Sesión</a>
         </nav>
     </header>
+
     <main>
-        <div class="title">
-            <h2>Solicitudes Aprobadas</h2>
-        </div>
-        
         <div class="table">
+            <div class="table-header2">
+                <p>Stock Gavetero</p>
+            </div>
             <div class="table-section">
                 <table>
                     <thead>
                         <tr>
-                            <th>Numero</th>
-                            <th>Fecha</th>
-                            <th>Alumno</th>
-                            <th>Estado</th>
+                            <th>Gaveta</th>
+                            <th>Componente</th>
+                            <th>Descripcion</th>
+                            <th>Cantidad</th>
+                            <th>Stock</th>
+                            <th>Editar</th>
                         </tr>
                     </thead>
                     <tbody id="contTabla">
-                        
+                       
                     </tbody>
                 </table>
             </div>
             
     </main>
-    
 </body>
 <footer><button class="but2"><a href="MenuPrincipal.html">Volver al menu</a></button></footer>
 </html>
