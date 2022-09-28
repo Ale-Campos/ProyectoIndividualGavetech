@@ -11,6 +11,7 @@ import menuProfesor from "./routes/menuProfesor.routes";
 import generarPedidos from "./routes/pedidos.routes";
 import misPedodos from "./routes/misPedidos.routes";
 import pedidosPendientes from "./routes/pedidosPendientes.routes";
+import pedidosAprobados from "./routes/pedidosAprobados.routes";
 const app = express();
 
 //Configs
@@ -31,6 +32,7 @@ app.use("/menuProfesor", menuProfesor);
 app.use("/generarPedido", generarPedidos);
 app.use("/misPedidos", misPedodos);
 app.use("/pedidosPendientes", pedidosPendientes);
+app.use("/pedidosAprobados", pedidosAprobados)
 //Archivos estáticos
 app.use(express.static("public"));
 

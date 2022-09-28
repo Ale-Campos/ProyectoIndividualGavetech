@@ -9,3 +9,7 @@ async function cerrarSesion() {
     window.location.href = urlPrincipal + "/login";
   });
 }
+
+async function solicitudesAprobadas() {
+  window.location.href = window.location + "solicitudesAprobadas";
+}
