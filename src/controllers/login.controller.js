@@ -31,6 +31,7 @@ const login = async (req, res) => {
         usuario.id = alumno[0].dni;
         usuario.nombre = alumno[0].nombre;
         usuario.apellido = alumno[0].apellido;
+        console.log("REDIRECCIONO");
         res.json({
           result: "correcto",
           redirect: "http://localhost:4000/menuAlumno/",
