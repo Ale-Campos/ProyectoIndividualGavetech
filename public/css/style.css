@@ -1,5 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Poppins", sans-serif;
   margin: 0;
   display: grid;
   min-height: 100vh;
@@ -40,10 +41,16 @@ nav a {
     padding: 10px 0px;
   }
 }
-.footer {
-  background-color: white;
+footer {
   padding: 1em 0;
-  text-align: center;
+  padding-left: 10px;
+}
+.butfooter {
+  font-size: 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 10px;
 }
 .contenedor {
   width: 100%;
@@ -55,7 +62,7 @@ nav a {
   border: solid #1a2537;
   margin: auto;
   width: 500px;
-  margin-top: 120px;
+  margin-top: 100px;
   border-radius: 8%;
 }
 h1 {
@@ -80,7 +87,6 @@ input[type="password"] {
   color: #999;
 }
 .button {
-  padding: 10px;
   border: none;
   width: 100%;
   color: white;
@@ -101,29 +107,36 @@ p {
 .nav-link {
   color: #fff;
 }
+.deslog {
+  font-weight: 600;
+  padding-right: 10px;
+  color: #fff;
+  font-size: 15px;
+  justify-content: center;
+}
+/*
 table {
-  font-family: arial, sans-serif;
-  border: 2px solid black;
-  border-radius: 10px;
-  border-collapse: collapse;
-  width: 100%;
-  background-color: white;
-}
-
-td,
-th {
-  border: 1px solid black;
-  text-align: left;
-  padding: 10px;
-  font-size: 20px;
-}
-
-tr:nth-child(even) {
-  background-color: #dddddd;
-}
+    font-family: arial, sans-serif;
+    border: 2px solid black;
+    border-radius: 10px;
+    border-collapse: collapse;
+    width: 100%;
+    background-color: white;
+  }
+  
+  td, th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 10px;
+    font-size: 20px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }*/
 #main-container {
   margin: 200px auto;
-  width: 600px;
+  width: 500px;
 }
 .box {
   border: 2px solid black;
@@ -145,37 +158,8 @@ tr:nth-child(even) {
   color: black;
   background-color: #aaa;
 }
-/*estilos seleccion de componentes*/
-#prod2 {
-  display: none;
-}
-#prod3 {
-  display: none;
-}
-#prod4 {
-  display: none;
-}
-#prod5 {
-  display: none;
-}
-.box2 {
-  border: 2px solid black;
-  border-radius: 5px;
-  padding: 4px;
-  width: 220px;
-  font-size: 15px;
-}
-.box3 {
-  border: 2px solid black;
-  border-radius: 5px;
-  padding: 4px;
-  width: 150px;
-  font-size: 15px;
-}
-h2 {
-  margin-left: 220px;
-}
 
+/*ESTILOS MENU ALUMNO*/
 .titulo {
   font-size: 4rem;
   color: #1a2537;
@@ -240,24 +224,25 @@ h2 {
 }
 
 /*ESTILOS SELECCION DE COMPONENTES*/
-#prod2 {
-  display: none;
-}
-#prod3 {
-  display: none;
-}
-#prod4 {
-  display: none;
-}
-#prod5 {
-  display: none;
-}
+/*
+  #prod2{               
+    display: none;}
+  #prod3{
+    display: none;}
+  #prod4{
+    display: none;}
+  #prod5{
+    display: none;}
+    */
+
 .box2 {
   border: 2px solid black;
   border-radius: 5px;
-  padding: 4px;
+  padding: 7px;
   width: 220px;
   font-size: 15px;
+  margin-top: 10px;
+  cursor: pointer;
 }
 .box3 {
   border: 2px solid black;
@@ -266,17 +251,22 @@ h2 {
   width: 150px;
   font-size: 15px;
   cursor: pointer;
+  font-family: "Poppins", sans-serif;
 }
 h2 {
-  margin-left: 220px;
+  text-align: center;
+  font-size: 30px;
 }
-.js-box2 {
-  border: 2px solid black;
-  border-radius: 5px;
-  padding: 4px;
-  width: 220px;
-  font-size: 15px;
+::placeholder {
+  font-family: "Poppins", sans-serif;
 }
+.tabla-pedidos {
+  display: flex-start; /*separacion entre elementos*/
+  flex-wrap: wrap; /*acomoda los elementos segun el ancho de la pagina*/
+  margin-top: 40px;
+}
+
+/*ESTILOS HISTORIAL DE PEDIDOS*/
 .table {
   width: 100%;
 }
@@ -318,139 +308,6 @@ tr:hover td {
 ::-webkit-scrollbar-thumb {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0, 3);
 }
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-body {
-  font-family: "Poppins", sans-serif; /*tipo de letra*/
-  margin: 0; /*area entre el contenido principal y los bordes de la pagina*/
-  display: grid;
-  min-height: 100vh; /*altura minima 100%, evita que exista un valor menor al 100%*/
-  grid-template-rows: auto 1fr auto; /* especifica el número de las filas en un diseño de cuadrícula*/
-}
-
-* {
-  box-sizing: border-box; /*incluye el relleno y el borde en el ancho y alto total de un elemento*/
-}
-
-a {
-  text-decoration: none; /*elimina el subrayado por defecto*/
-  color: black;
-}
-
-header {
-  display: flex;
-  min-height: 85px;
-  background-color: #1d3c79;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  margin-bottom: 1em;
-}
-
-.logo {
-  display: flex;
-}
-
-.logo-img {
-  height: 70px;
-  margin-right: 10px;
-}
-
-.deslog {
-  font-weight: 600;
-  padding-right: 10px;
-  color: #fff;
-  font-size: 15px;
-  justify-content: center;
-}
-
-@media (max-width: 700px) {
-  header {
-    flex-direction: column;
-  }
-
-  nav {
-    padding: 10px 0px;
-  }
-}
-
-footer {
-  padding: 1em 0;
-  padding-left: 10px;
-}
-.but2 {
-  font-size: 15px;
-}
-
-/*ESTILOS MENU PRINCIPAL*/
-.titulo {
-  font-size: 4rem;
-  color: #1a2537;
-  display: flex;
-  justify-content: center;
-}
-h1 {
-  text-align: center;
-  color: #1a2537;
-  font-size: 40px;
-}
-
-.cards {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-}
-
-.card {
-  width: 300px;
-  height: 300px;
-  padding: 10px;
-  background: rgb(37, 35, 35);
-  border-radius: 5px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.37);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  margin: 15px;
-}
-
-.card i {
-  font-size: 100px;
-  color: #18b0a9;
-}
-
-.card .textos {
-  margin-top: 10px;
-  text-align: center;
-  color: white;
-  transition: all 0.3s ease;
-}
-
-.card .textos a {
-  margin-top: 10px;
-  color: white;
-  display: inline-block;
-  padding: 10px;
-  border: 1px solid white;
-  border-radius: 4px;
-  transition: all 0.3s ease;
-  width: 70px;
-}
-
-.card:hover {
-  background: #18b0a9;
-}
-
-.card:hover i,
-.card:hover .textos,
-.card:hover .textos a {
-  transform: scale(1.05);
-  color: white;
-}
-
-/*ESTILOS GESTIONAR STOCK-PENDIENTES-APROBADAS*/
 .title {
   font-size: 2rem;
   color: #1a2537;
@@ -529,82 +386,4 @@ tr:hover td {
 }
 ::-webkit-scrollbar-thumb {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0, 3);
-}
-
-/*ESTILOS CAMBIO DE PAGINA*/
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.container {
-  background: #fdfdfd;
-  padding: 1rem;
-  margin: 1rem auto;
-  border-radius: 0.2rem;
-  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.3); /*sombreado del marco*/
-  counter-reset: pagination;
-  text-align: center;
-}
-.container:after {
-  clear: both;
-  content: "";
-  display: table;
-}
-.container ul {
-  width: 100%;
-}
-
-.xlarge {
-  width: 40rem;
-}
-
-ul,
-li {
-  list-style: none;
-  display: inline;
-  padding-left: 0px;
-}
-
-li {
-  counter-increment: pagination;
-}
-li:hover a {
-  color: #fdfdfd;
-  background-color: #0298cf;
-  border: solid 1px #1d1f20;
-}
-li.active a {
-  color: #fdfdfd;
-  background-color: #0298cf;
-  border: solid 1px #1d1f20;
-}
-li:first-child {
-  float: left; /*ubica el boton Anterior del lado izquierdo*/
-}
-li:first-child a:after {
-  content: "Anterior";
-}
-li:nth-child(2) {
-  counter-reset: pagination;
-}
-li:last-child {
-  float: right; /*ubica un elemento al lado derecho de su contenedor*/
-}
-li:last-child a:after {
-  content: "Siguiente";
-}
-li a {
-  border: solid 1px #d7d7d7;
-  border-radius: 0.2rem;
-  color: #7d7d7d;
-  text-decoration: none;
-  text-transform: uppercase;
-  display: inline-block;
-  text-align: center;
-  padding: 0.5rem 0.9rem;
-}
-li a:after {
-  content: " " counter(pagination) " ";
 }

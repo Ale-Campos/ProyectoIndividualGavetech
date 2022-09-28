@@ -11,7 +11,10 @@
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
     />
+    <link rel="stylesheet" href="./../css/select2.css" />
+    <link rel="stylesheet" href="./../css/select2.min.css" />
     <link rel="stylesheet" href="./../css/style.css" />
+
     <meta charset="UTF-8" />
     <link
       href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
@@ -37,7 +40,12 @@
           <h2>Selección de Componentes</h2>
           <div id="prod1">
             <label for="producto">Componente:</label>
-            <select class="js-box2" name="producto1" id="select2"></select>
+            <select
+              class="js-box2"
+              name="producto1"
+              id="select2"
+              style="width: 200px"
+            ></select>
             <label for="cant">Cantidad:</label>
             <input class="box2" type="number" id="cant1" min="1" />
             <button id="agreagarAPedido" onclick="agregarAPedido();">
