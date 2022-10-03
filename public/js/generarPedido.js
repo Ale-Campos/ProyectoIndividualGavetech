@@ -11,10 +11,24 @@ const mostarData = (data) => {
     let option = document.createElement("option");
     option.text = data[index].descripcion;
     option.value = data[index].idproducto;
-
     select2.appendChild(option);
   }
 };
+
+async function pruebaSelect() {
+  let select = document.getElementById("select2");
+  let inputCant = document.getElementById("cant1");
+
+  inputCant.max = await consularStock(select.value);
+}
+
+async function consularStock(value) {
+  let cantidad;
+  await fetch(`http://localhost:4000/generarPedido/select/${value}`)
+    .then((response) => response.json())
+    .then((data) => (cantidad = data[0].stock));
+  return cantidad;
+}
 
 function agregarAPedido() {
   let select = document.getElementById("select2").value;
