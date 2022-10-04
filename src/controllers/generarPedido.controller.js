@@ -37,12 +37,16 @@ const getProduct = async (req, res) => {
 const enviarStringQr = async (req, res) => {
   const { idProducto, cantidad } = req.body;
   const connection = await getConnection();
-  let string = idProducto + cantidad + `/${usuarioLogueado.nombre}`;
+  let string = idProducto + "/" + cantidad + `/${usuarioLogueado.nombre}`;
 
   const obj = {
     idProducto,
     cantidad,
   };
+
+  for (let index = 0; index < idProducto.length; index++) {
+    acutalizarStock(idProducto[index], cantidad[index]);
+  }
 
   console.log(obj);
 
@@ -88,6 +92,16 @@ const enviarStringQr = async (req, res) => {
     res.json(urldata);
   });
 };
+
+async function acutalizarStock(idProducto, cantidad) {
+  const connection = await getConnection();
+  connection.query(`
+
+
+  UPDATE producto
+  SET stock_virtual = stock_virtual - ${cantidad}
+  WHERE idproducto = ${idProducto}`);
+}
 
 export const pedidosMethods = {
   getProducts,

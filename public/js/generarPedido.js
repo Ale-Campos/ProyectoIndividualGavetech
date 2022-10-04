@@ -60,12 +60,12 @@ const agregarSelecciones = (seleccion) => {
 
 async function enviarPedido() {
   //Aca ponemos la info que queremos pasar a qr en función a lo definido en agregarPedido()
-  let idProducto = "";
-  let cantidad = "/";
+  let idProducto = [];
+  let cantidad = [];
   //Formamos los strings
   selecciones.forEach((x) => {
-    idProducto = idProducto + `${x.idproducto},`;
-    cantidad = cantidad + `${x.cantidad},`;
+    idProducto.push(x.idproducto);
+    cantidad.push(x.cantidad);
   });
   //Creamos el json a enviar
   let json = {
