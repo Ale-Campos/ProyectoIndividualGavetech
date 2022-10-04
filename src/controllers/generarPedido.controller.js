@@ -2,7 +2,6 @@ import { getConnection } from "../database/database";
 import { qrMethods } from "./../qr/Encriptacion-V1";
 import { usuarioLogueado } from "./login.controller";
 
-
 const generarPedido = (req, res) => {
   if (usuarioLogueado.estaLogeado) {
     res.render("GenerarPedido");
@@ -45,29 +44,43 @@ const enviarStringQr = async (req, res) => {
     cantidad,
   };
 
+  console.log(obj);
+
   const stringEncriptado = qrMethods.encrypt(string);
   const stringDesencriptado = qrMethods.decrypt(stringEncriptado);
   ////CAMBIAR stringDesencriptado por stringEncriptado, es solo de preueba
   qrMethods.QRCode.toDataURL(stringDesencriptado, async (err, data) => {
     if (err) throw err;
-    
-    const idAlumnoCurso= JSON.stringify(await connection.query(`select idalumnocurso from alumnocurso where alumno_id = ${usuarioLogueado.id} `))
+
+    const idAlumnoCurso = JSON.stringify(
+      await connection.query(
+        `select idalumnocurso from alumnocurso where alumno_id = ${usuarioLogueado.id} `
+      )
+    );
     console.log(idAlumnoCurso);
     const objetoIdAlumno = JSON.parse(idAlumnoCurso);
     var date;
-date = new Date();
-date = date.getUTCFullYear() + '-' +
-    ('00' + (date.getUTCMonth()+1)).slice(-2) + '-' +
-    ('00' + date.getUTCDate()).slice(-2) + ' ' + 
-    ('00' + date.getUTCHours()).slice(-2) + ':' + 
-    ('00' + date.getUTCMinutes()).slice(-2) + ':' + 
-    ('00' + date.getUTCSeconds()).slice(-2);
-console.log(date);
-    await connection.query(`insert into pedido (alumnocurso_id,fecha,string_qr) values (${objetoIdAlumno[0].idalumnocurso}, '${date}','${data}')`)
+    date = new Date();
+    date =
+      date.getUTCFullYear() +
+      "-" +
+      ("00" + (date.getUTCMonth() + 1)).slice(-2) +
+      "-" +
+      ("00" + date.getUTCDate()).slice(-2) +
+      " " +
+      ("00" + date.getUTCHours()).slice(-2) +
+      ":" +
+      ("00" + date.getUTCMinutes()).slice(-2) +
+      ":" +
+      ("00" + date.getUTCSeconds()).slice(-2);
+    console.log(date);
+    await connection.query(
+      `insert into pedido (alumnocurso_id,fecha,string_qr) values (${objetoIdAlumno[0].idalumnocurso}, '${date}','${data}')`
+    );
     const urlDb = await connection.query(`SELECT string_qr 
-    FROM alumnocurso inner join pedido on alumnocurso_id=${objetoIdAlumno[0].idalumnocurso};`);//CONSULTA SQL PARA OBTENER EL QR E INSERTARLA EN UNA IMAGEN. ESTA COSNULTA SOLO TRAE EL PRIMER REGISTRO, NO TRAE EL RESTO.
-    
-    const urlObj = JSON.parse(JSON.stringify(urlDb))[0].string_qr;//Hay que hacer que esto pase el string y que en el js de front lo recorra e imprima las cosas.
+    FROM alumnocurso inner join pedido on alumnocurso_id=${objetoIdAlumno[0].idalumnocurso};`); //CONSULTA SQL PARA OBTENER EL QR E INSERTARLA EN UNA IMAGEN. ESTA COSNULTA SOLO TRAE EL PRIMER REGISTRO, NO TRAE EL RESTO.
+
+    const urlObj = JSON.parse(JSON.stringify(urlDb))[0].string_qr; //Hay que hacer que esto pase el string y que en el js de front lo recorra e imprima las cosas.
     console.log(urlObj);
     const urldata = {
       url: urlObj,

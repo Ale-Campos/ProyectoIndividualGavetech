@@ -26,7 +26,7 @@ async function consularStock(value) {
   let cantidad;
   await fetch(`http://localhost:4000/generarPedido/select/${value}`)
     .then((response) => response.json())
-    .then((data) => (cantidad = data[0].stock));
+    .then((data) => (cantidad = data[0].stock_virtual));
   return cantidad;
 }
 
