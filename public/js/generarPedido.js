@@ -1,5 +1,5 @@
 let selecciones = [];
-fetch(window.location + "/list") //MODIFICAR ESTA DIRECCION
+fetch(window.location + "/list")
   .then((response) => response.json())
   .then((data) => mostarData(data))
   .catch((err) => console.log(err));
