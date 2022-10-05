@@ -9,6 +9,7 @@
     scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
   <link rel="stylesheet" href="./../css/style.css">
+  <script src="./../js/cargaComponentes.js"></script>
   <script src="https://kit.fontawesome.com/08d50d8048.js" crossorigin="anonymous"></script>
 </head>
 
@@ -27,28 +28,28 @@
   </header>
   <!--contenido principal de la página-->
   <main class="main-container">
-    <form class="formulario">
+    <form action="http://localhost:4000/cargaComponentes/" method="POST" class="formulario">
 
       <h1>Cargar nuevo componente</h1>
       <div class="contenedor">
 
         <div class="input-contenedor">
-          <input type="text" placeholder="Descripcion">
+          <input type="text" placeholder="Descripcion" id="descripcion">
         </div>
 
         <div class="input-contenedor">
-          <input type="text" placeholder="url imagen">
+          <input type="text" placeholder="url imagen" id="imagen">
         </div>
 
         <div class="input-contenedor">
-          <input type="text" placeholder="Cantidad">
+          <input type="text" placeholder="Cantidad" id="cantidad">
         </div>
 
         <div class="input-contenedor">
-          <input type="text" placeholder="Gaveta">
+          <input type="text" placeholder="Gaveta" id="gaveta">
         </div>
 
-        <input type="submit" value="Cargar" class="button">
+        <button onclick="cargarComponentes();">Cargar</button>
       </div>
     </form>
   </main>

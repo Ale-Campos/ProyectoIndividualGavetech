@@ -3,7 +3,8 @@ import { cargaComponentesMethods as cargaComponentesController } from "../contro
 
 const router = Router();
 
-router.get("/", cargaComponentesController.getCargaPedidos);
+router.get("/", cargaComponentesController.getCargaComponente);
+router.post("/", cargaComponentesController.cargarComponente)
 
 export default router;
 
