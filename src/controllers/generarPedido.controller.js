@@ -2,6 +2,8 @@ import { getConnection } from "../database/database";
 import { qrMethods } from "./../qr/Encriptacion-V1";
 import { usuarioLogueado } from "./login.controller";
 
+
+
 const generarPedido = (req, res) => {
   if (usuarioLogueado.estaLogeado) {
     res.render("GenerarPedido");
@@ -37,7 +39,11 @@ const getProduct = async (req, res) => {
 const enviarStringQr = async (req, res) => {
   const { idProducto, cantidad } = req.body;
   const connection = await getConnection();
-  let string = idProducto + "/" + cantidad + `/${usuarioLogueado.nombre}`;
+  const idpedido = await connection.query(`
+  SELECT idpedido FROM pedido ORDER BY idpedido DESC LIMIT 1
+`);
+console.log(idpedido[0].idpedido);
+  let string = (idpedido[0].idpedido+1) + "/"+ idProducto + "/" + cantidad + `/${usuarioLogueado.id},${usuarioLogueado.nombre}, ${usuarioLogueado.apellido}`;
 
   const obj = {
     idProducto,

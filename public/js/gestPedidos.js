@@ -25,9 +25,9 @@ const mostarData = (data) => {
       button1.appendChild(tagI);
      
       td5.appendChild(button1);
-      td1.textContent = element.idproducto;
+      td1.textContent = element.stock_real;
       td2.textContent = element.descripcion;
-      td3.textContent = element.stock;
+      td3.textContent = element.stock_virtual;
       td4.textContent = element.posicion;
       tr.appendChild(td4);
       tr.appendChild(td6);
