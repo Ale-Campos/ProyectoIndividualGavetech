@@ -41,7 +41,7 @@ function agregarAPedido() {
   const imprimirResultado = (data) => {
     const seleccion = {
       ////Aca hay que definir que datos se envían al backend
-
+      descripcion: data[0].descripcion,
       idproducto: data[0].idproducto,
       cantidad: cantidad,
     };
@@ -62,15 +62,18 @@ async function enviarPedido() {
   //Aca ponemos la info que queremos pasar a qr en función a lo definido en agregarPedido()
   let idProducto = [];
   let cantidad = [];
+  let descripcion =[];
   //Formamos los strings
   selecciones.forEach((x) => {
     idProducto.push(x.idproducto);
     cantidad.push(x.cantidad);
+    descripcion.push(x.descripcion)
   });
   //Creamos el json a enviar
   let json = {
     idProducto: idProducto,
     cantidad: cantidad,
+    descripcion: descripcion
   };
   console.log(json);
   //Enviamos por el post de la api

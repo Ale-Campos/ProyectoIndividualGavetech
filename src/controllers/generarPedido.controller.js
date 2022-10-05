@@ -37,14 +37,17 @@ const getProduct = async (req, res) => {
   }
 };
 const enviarStringQr = async (req, res) => {
-  const { idProducto, cantidad } = req.body;
+  console.log(req.body);
+  const { idProducto,cantidad, descripcion } = req.body;
   const connection = await getConnection();
   const idpedido = await connection.query(`
   SELECT idpedido FROM pedido ORDER BY idpedido DESC LIMIT 1
 `);
 console.log(idpedido[0].idpedido);
-  let string = (idpedido[0].idpedido+1) + "/"+ idProducto + "/" + cantidad + `/${usuarioLogueado.id},${usuarioLogueado.nombre}, ${usuarioLogueado.apellido}`;
-
+console.log(descripcion);
+  let string = (idpedido[0].idpedido+1) + "/"+ idProducto + "/"+descripcion +"/" + cantidad + `/${usuarioLogueado.id},${usuarioLogueado.nombre}, ${usuarioLogueado.apellido}`;
+console.log("String:::::");
+  console.log(string);
   const obj = {
     idProducto,
     cantidad,

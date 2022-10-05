@@ -17,3 +17,7 @@ async function solicitudesAprobadas() {
 async function gestPedidos() {
   window.location.href = urlPrincipal + "/gestionarPedidos";
 }
+
+async function cargaComponentes(){
+  window.location.href = urlPrincipal + "/cargaComponentes";
+}

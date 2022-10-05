@@ -13,6 +13,7 @@ import misPedodos from "./routes/misPedidos.routes";
 import pedidosPendientes from "./routes/pedidosPendientes.routes";
 import pedidosAprobados from "./routes/pedidosAprobados.routes";
 import gestProductos from "./routes/gestPedidos.routes";
+import cargaComponentes from "./routes/cargaComponente.routes"
 const app = express();
 
 //Configs
@@ -35,6 +36,7 @@ app.use("/misPedidos", misPedodos);
 app.use("/pedidosPendientes", pedidosPendientes);
 app.use("/pedidosAprobados", pedidosAprobados);
 app.use("/gestionarPedidos", gestProductos);
+app.use("/cargaComponentes", cargaComponentes)
 //Archivos estáticos
 app.use(express.static("public"));
 
