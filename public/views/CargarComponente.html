@@ -1,58 +1,70 @@
 <!DOCTYPE html>
 <html lang="es">
+  <!--provee la informacion general para el navegador-->
+  <head>
+    <meta charset="UTF-8" />
+    <title>GaveTech</title>
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=yes, initial-
+    scale=1.0, maximum-scale=3.0, minimum-scale=1.0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    />
+    <link rel="stylesheet" href="./../css/style.css" />
+    <script src="./../js/cargaComponentes.js"></script>
+    <script
+      src="https://kit.fontawesome.com/08d50d8048.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<!--provee la informacion general para el navegador-->
-<head>
-  <meta charset="UTF-8">
-  <title>GaveTech</title>
-  <meta name="viewport" content="width=device-width, user-scalable=yes, initial-
-    scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-  <link rel="stylesheet" href="./../css/style.css">
-  <script src="./../js/cargaComponentes.js"></script>
-  <script src="https://kit.fontawesome.com/08d50d8048.js" crossorigin="anonymous"></script>
-</head>
+  <!--cuerpo de la pagina-->
 
-<!--cuerpo de la pagina-->
-
-<body>
-  <!--encabezado de la página-->
-  <header>
-    <!--divide el bloque para aplicarle especificamente estilos u operaciones a esta seccion-->
-    <div class="logo">
-      <img src="./../img/ahk2.jpg" alt="Logo AHK" class="logo-img">
-    </div>
-    <nav>
-        <a href="./../REGISTRARSE-LOGEARSE/login.html" class="deslog">Cerrar Sesión</a>
-    </nav>
-  </header>
-  <!--contenido principal de la página-->
-  <main class="main-container">
-    <form action="http://localhost:4000/cargaComponentes/" method="POST" class="formulario">
-
-      <h1>Cargar nuevo componente</h1>
-      <div class="contenedor">
-
-        <div class="input-contenedor">
-          <input type="text" placeholder="Descripcion" id="descripcion">
-        </div>
-
-        <div class="input-contenedor">
-          <input type="text" placeholder="url imagen" id="imagen">
-        </div>
-
-        <div class="input-contenedor">
-          <input type="text" placeholder="Cantidad" id="cantidad">
-        </div>
-
-        <div class="input-contenedor">
-          <input type="text" placeholder="Gaveta" id="gaveta">
-        </div>
-
-        <button onclick="cargarComponentes();">Cargar</button>
+  <body>
+    <!--encabezado de la página-->
+    <header>
+      <!--divide el bloque para aplicarle especificamente estilos u operaciones a esta seccion-->
+      <div class="logo">
+        <img src="./../img/ahk2.jpg" alt="Logo AHK" class="logo-img" />
       </div>
-    </form>
-  </main>
-</body>
-<footer><button class="but2"><a href="MenuPrincipal.html">Volver al menu</a></button></footer>
+      <nav>
+        <a href="./../REGISTRARSE-LOGEARSE/login.html" class="deslog"
+          >Cerrar Sesión</a
+        >
+      </nav>
+    </header>
+    <!--contenido principal de la página-->
+    <main class="main-container">
+      <form class="formulario">
+        <h1>Cargar nuevo componente</h1>
+        <div class="contenedor">
+          <div class="input-contenedor">
+            <input type="text" placeholder="Descripcion" id="descripcion" />
+          </div>
+
+          <div class="input-contenedor">
+            <input type="text" placeholder="url imagen" id="imagen" />
+          </div>
+
+          <div class="input-contenedor">
+            <input type="text" placeholder="Cantidad" id="cantidad" />
+          </div>
+
+          <div class="input-contenedor">
+            <input type="text" placeholder="Gaveta" id="gaveta" />
+          </div>
+
+          <a onclick="cargarComponentes();" class="button">Cargar</a>
+        </div>
+      </form>
+    </main>
+  </body>
+  <footer>
+    <button class="but2">
+      <a href="MenuPrincipal.html">Volver al menu</a>
+    </button>
+  </footer>
 </html>
