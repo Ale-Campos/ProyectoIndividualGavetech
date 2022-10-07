@@ -25,6 +25,10 @@ async function controlCant() {
 
 async function consularStock(value) {
   let cantidad;
+
+  if (value == "SC") {
+    return (cantidad = 0);
+  }
   await fetch(`http://localhost:4000/generarPedido/select/${value}`)
     .then((response) => response.json())
     .then((data) => (cantidad = data[0].stock_virtual));
@@ -38,7 +42,7 @@ function agregarAPedido() {
       .then((response) => response.json())
       .then((data) => imprimirResultado(data))
       .catch((err) => console.log(err));
-    const ul = document.getElementById("listadoSeleccion");
+    const tabla = document.getElementById("contTabla");
     const cantidad = document.getElementById("cant1").value;
     const imprimirResultado = (data) => {
       const seleccion = {
@@ -50,13 +54,43 @@ function agregarAPedido() {
       agregarSelecciones(seleccion);
       console.log("Selecciones");
       console.log(selecciones);
-      let li = document.createElement("li");
 
-      li.textContent = `IdProucto: ${data[0].idproducto} Descripcion: ${data[0].descripcion} Cantidad: ${cantidad}`;
-      ul.appendChild(li);
+      const tr = document.createElement("tr");
+      const tdIdProd = document.createElement("td");
+      const tdDescripcion = document.createElement("td");
+      const tdCantidad = document.createElement("td");
+      const tdBoton = document.createElement("td");
+      const botonAnchor = document.createElement("a");
+      botonAnchor.id = seleccion.idproducto;
+      botonAnchor.textContent = "Quitar";
+      botonAnchor.className = "button";
+      botonAnchor.addEventListener("click", () => {
+        console.log("TENGO EL EVENTO");
+        quitarProducto(botonAnchor.id);
+      });
+      tdIdProd.textContent = seleccion.idproducto;
+      tdDescripcion.textContent = seleccion.descripcion;
+      tdCantidad.textContent = seleccion.cantidad;
+      tdBoton.appendChild(botonAnchor);
+      tr.appendChild(tdIdProd);
+      tr.appendChild(tdDescripcion);
+      tr.appendChild(tdCantidad);
+      tr.appendChild(tdBoton);
+      tabla.appendChild(tr);
     };
   }
 }
+
+function quitarProducto(id) {
+  const boton = document.getElementById(`${id}`);
+  boton.textContent = "Quitado!!";
+  const index = selecciones.findIndex(
+    (seleccion) => seleccion.idproducto == id
+  );
+  console.log(selecciones.splice(index, 1));
+  console.log(selecciones);
+}
+
 const agregarSelecciones = (seleccion) => {
   selecciones.push(seleccion);
 };
@@ -72,6 +106,10 @@ async function enviarPedido() {
     cantidad.push(x.cantidad);
     descripcion.push(x.descripcion);
   });
+  if (selecciones.length == 0) {
+    window.alert("No se han seleccionado componentes");
+    return;
+  }
   //Creamos el json a enviar
   let json = {
     idProducto: idProducto,
@@ -87,4 +125,15 @@ async function enviarPedido() {
       "Content-type": "application/json",
     },
   });
+  mostrar();
+}
+
+function ocultar() {
+  const modal_container = document.getElementById("modal_container");
+  modal_container.classList.remove("show");
+  location.reload();
+}
+function mostrar() {
+  const modal_container = document.getElementById("modal_container");
+  modal_container.classList.add("show");
 }

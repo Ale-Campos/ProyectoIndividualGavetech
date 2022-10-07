@@ -75,9 +75,30 @@
         </div>
       </div>
       <div>
-        <div style="margin-right: 0%"><ul id="listadoSeleccion"></ul></div>
+        <div class="table-section">
+          <table>
+            <thead>
+              <tr>
+                <th>ID Producto</th>
+                <th>Descripcion</th>
+                <th>Cantidad</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="contTabla"></tbody>
+          </table>
+        </div>
+      </div>
+      <div id="modal_container" class="modal-container">
+        <div class="modal">
+          <h1>Comentario</h1>
+          <p>
+            El pedido ha sido enviado, en el apartado de "Mis Pedidos" podrás
+            ver el estado del mismo
+          </p>
 
-        <div id="contenedorQr"></div>
+          <a id="close" onclick="ocultar();" class="button">Listo</a>
+        </div>
       </div>
       <script>
         // In your Javascript (external .js resource or <script> tag)

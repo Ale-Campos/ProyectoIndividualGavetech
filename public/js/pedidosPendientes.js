@@ -1,5 +1,6 @@
 const urlPrincipal = "http://localhost:4000";
 let pedidos = null;
+let idPedidoDenegado = 0;
 fetch(urlPrincipal + "/pedidosPendientes")
   .then((response) => response.json())
   .then((data) => mostarData(data))
@@ -23,7 +24,8 @@ const mostarData = (data) => {
     const button2 = document.createElement("button");
     button2.id = element.idpedido;
     button2.addEventListener("click", () => {
-      denegarPedido(button1.id);
+      //denegarPedido(button2.id); Funca
+      mostrar(button2.id);
     });
     const tagIDenied = document.createElement("i");
     const tagIAccept = document.createElement("i");
@@ -59,7 +61,32 @@ function aceptarPedido(id) {
 async function denegarPedido(id) {
   fetch(urlPrincipal + `/pedidosPendientes/deletePedido/${id}`, {
     method: "DELETE",
-  }).then(() => {
-    location.reload();
-  });
+  }).then(() => {});
+}
+
+function mostrar(idPedido) {
+  const modal_container = document.getElementById("modal_container");
+  modal_container.classList.add("show");
+  idPedidoDenegado = idPedido;
+}
+async function ocultar() {
+  if (idPedidoDenegado != 0) {
+    const comentario = document.getElementById("comentario").value;
+    const reqBody = {
+      idpedido: idPedidoDenegado,
+      comentario: comentario,
+    };
+    console.log(reqBody);
+    await fetch(urlPrincipal + "/pedidosPendientes/agregarComentario", {
+      method: "PATCH",
+      body: JSON.stringify(reqBody),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }
+
+  const modal_container = document.getElementById("modal_container");
+  modal_container.classList.remove("show");
+  location.reload();
 }
