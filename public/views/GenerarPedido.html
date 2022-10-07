@@ -38,37 +38,44 @@
       <div>
         <div class="bloque1">
           <h2>Selección de Componentes</h2>
-          <div id="prod1">
+          <div id="prod1" style="text-align: center">
             <label for="producto">Componente:</label>
             <select
               class="js-box2"
               name="producto1"
               id="select2"
               style="width: 200px"
-              onchange="pruebaSelect();"
+              onchange="controlCant();"
             >
-              <option disabled selected>Seleccione un componente</option>
+              <option selected value="SC">Seleccione un componente</option>
             </select>
             <label for="cant">Cantidad:</label>
             <input class="box2" type="number" id="cant1" min="1" />
-            <button id="agreagarAPedido" onclick="agregarAPedido();">
-              Agregar
-            </button>
+            <a
+              id="agreagarAPedido"
+              onclick="agregarAPedido();"
+              class="button"
+              style="margin: 10px"
+            >
+              Agregar </a
+            ><a
+              id="enviarPedido"
+              onclick="enviarPedido();"
+              class="button"
+              style="margin: 10px"
+            >
+              Enviar Pedido
+            </a>
 
             <br /><br />
           </div>
         </div>
         <div>
           <div></div>
-          <div style="text-align: right">
-            <button id="enviarPedido" onclick="enviarPedido();">
-              Enviar Pedido
-            </button>
-          </div>
         </div>
       </div>
       <div>
-        <div><ul id="listadoSeleccion"></ul></div>
+        <div style="margin-right: 0%"><ul id="listadoSeleccion"></ul></div>
 
         <div id="contenedorQr"></div>
       </div>

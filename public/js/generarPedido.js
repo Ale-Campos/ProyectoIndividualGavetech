@@ -15,9 +15,10 @@ const mostarData = (data) => {
   }
 };
 
-async function pruebaSelect() {
+async function controlCant() {
   let select = document.getElementById("select2");
-  let inputCant = document.getElementById("cant1");
+  const inputCant = document.getElementById("cant1");
+  inputCant.value = 1;
 
   inputCant.max = await consularStock(select.value);
 }
@@ -32,27 +33,29 @@ async function consularStock(value) {
 
 function agregarAPedido() {
   let select = document.getElementById("select2").value;
-  fetch(window.location + `/select/${select}`)
-    .then((response) => response.json())
-    .then((data) => imprimirResultado(data))
-    .catch((err) => console.log(err));
-  const ul = document.getElementById("listadoSeleccion");
-  const cantidad = document.getElementById("cant1").value;
-  const imprimirResultado = (data) => {
-    const seleccion = {
-      ////Aca hay que definir que datos se envían al backend
-      descripcion: data[0].descripcion,
-      idproducto: data[0].idproducto,
-      cantidad: cantidad,
-    };
-    agregarSelecciones(seleccion);
-    console.log("Selecciones");
-    console.log(selecciones);
-    let li = document.createElement("li");
+  if (select != "SC") {
+    fetch(window.location + `/select/${select}`)
+      .then((response) => response.json())
+      .then((data) => imprimirResultado(data))
+      .catch((err) => console.log(err));
+    const ul = document.getElementById("listadoSeleccion");
+    const cantidad = document.getElementById("cant1").value;
+    const imprimirResultado = (data) => {
+      const seleccion = {
+        ////Aca hay que definir que datos se envían al backend
+        descripcion: data[0].descripcion,
+        idproducto: data[0].idproducto,
+        cantidad: cantidad,
+      };
+      agregarSelecciones(seleccion);
+      console.log("Selecciones");
+      console.log(selecciones);
+      let li = document.createElement("li");
 
-    li.textContent = `IdProucto: ${data[0].idproducto} Descripcion: ${data[0].descripcion} Cantidad: ${cantidad}`;
-    ul.appendChild(li);
-  };
+      li.textContent = `IdProucto: ${data[0].idproducto} Descripcion: ${data[0].descripcion} Cantidad: ${cantidad}`;
+      ul.appendChild(li);
+    };
+  }
 }
 const agregarSelecciones = (seleccion) => {
   selecciones.push(seleccion);
@@ -62,18 +65,18 @@ async function enviarPedido() {
   //Aca ponemos la info que queremos pasar a qr en función a lo definido en agregarPedido()
   let idProducto = [];
   let cantidad = [];
-  let descripcion =[];
+  let descripcion = [];
   //Formamos los strings
   selecciones.forEach((x) => {
     idProducto.push(x.idproducto);
     cantidad.push(x.cantidad);
-    descripcion.push(x.descripcion)
+    descripcion.push(x.descripcion);
   });
   //Creamos el json a enviar
   let json = {
     idProducto: idProducto,
     cantidad: cantidad,
-    descripcion: descripcion
+    descripcion: descripcion,
   };
   console.log(json);
   //Enviamos por el post de la api
@@ -83,14 +86,5 @@ async function enviarPedido() {
     headers: {
       "Content-type": "application/json",
     },
-  })
-    .then((res) => res.json())
-    .then((data) => imprimirQr(data));
-
-  function imprimirQr(data) {
-    let div = document.getElementById("contenedorQr");
-    let img = document.createElement("img");
-    img.src = data.url;
-    div.appendChild(img);
-  }
+  });
 }
