@@ -16,10 +16,13 @@ const mostarData = (data) => {
     const td3 = document.createElement("td");
     const td4 = document.createElement("td");
     const img = document.createElement("img");
+    const anchor = document.createElement("a");
+    anchor.href = element.string_qr;
     td1.textContent = element.idpedido;
     td2.textContent = element.fecha;
     img.src = element.string_qr;
-    td3.appendChild(img);
+    anchor.appendChild(img);
+    td3.appendChild(anchor);
     td4.textContent = element.aprobado;
     tr.appendChild(td1);
     tr.appendChild(td2);

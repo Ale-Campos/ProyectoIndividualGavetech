@@ -1,22 +1,25 @@
 import { getConnection } from "../database/database";
 
-const getCargaComponente = async (req, res) =>{
-    res.render("CargarComponente");
+const getCargaComponente = async (req, res) => {
+  res.render("CargarComponente");
 };
 
-const cargarComponente = (req,res) =>{
-    console.log(req.body);
-    const {descripcion, imagen, cantidad, posicion} = req.body;
-    const obj = {
-        descripcion:descripcion,
-        imagen:imagen,
-        cantidad:cantidad,
-        posicion:posicion
+const cargarComponente = async (req, res) => {
+  const connection = await getConnection();
+  const { descripcion, imagen, cantidad, posicion } = req.body;
+  await connection.query(
+    `
+  INSERT INTO producto (descripcion, imagen,stock_virtual,stock_real, posicion, categoria_id) values ('${descripcion}', '${imagen}', ${cantidad}, ${cantidad}, ${posicion},1)`,
+    (err, data) => {
+      if (err) {
+        throw err;
+      }
+      res.json(data);
     }
-    console.log(obj);
-    res.json(obj);
-}
+  );
+};
 
 export const cargaComponentesMethods = {
-    getCargaComponente, cargarComponente
+  getCargaComponente,
+  cargarComponente,
 };
