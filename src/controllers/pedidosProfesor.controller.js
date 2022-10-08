@@ -38,28 +38,54 @@ const deletePedido = async (req, res) => {
 };
 const agregarComentario = async (req, res) => {
   const { idpedido, comentario } = req.body;
-  console.log("Este es el body");
-  console.log(req.body);
+
   const connection = await getConnection();
   await connection.query(`
   UPDATE pedido
   SET comentario = '${comentario}', rechazado =1
   WHERE idpedido = ${idpedido};
   `);
+  await restaurarStock(idpedido);
   res.send("Comentario agregado");
 };
+async function restaurarStock(idPedido) {
+  const connection = await getConnection();
+  let itemsPedidos = await connection.query(
+    `
+  SELECT producto_id, cantidad 
+  FROM itempedido
+  WHERE itempedido.pedido_id = ${idPedido}
+  `
+  );
+  const json = JSON.parse(JSON.stringify(itemsPedidos));
+  console.log(json[0]);
+  json.forEach(async (item) => {
+    console.log("ID ITEM PEDIDO: " + item.producto_id);
+    let cantidadActual = await connection.query(`
+      SELECT stock_virtual
+      FROM producto
+      WHERE idproducto = ${item.producto_id};
+      `);
+    cantidadActual = cantidadActual[0].stock_virtual;
+    const cantActualizada = cantidadActual + item.cantidad;
 
+    await connection.query(`
+    UPDATE producto
+    SET stock_virtual = ${cantActualizada}
+    WHERE idproducto = ${item.producto_id}
+    `);
+  });
+}
 const obtenerItemsPedidos = async (req, res) => {
   const idpedido = req.params.idpedido;
   const connection = await getConnection();
-  console.log("ID PEDIDO::::: " + idpedido);
+
   const itemsPedidos = await connection.query(`
   SELECT cantidad, descripcion
   FROM itempedido INNER JOIN producto
   WHERE itempedido.producto_id = producto.idproducto AND pedido_id=${idpedido};
   `);
-  console.log("INFO ENCONTRADA");
-  console.log(itemsPedidos);
+
   res.json(itemsPedidos);
 };
 
