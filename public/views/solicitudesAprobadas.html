@@ -33,7 +33,7 @@
                             <th>Numero</th>
                             <th>Fecha</th>
                             <th>Alumno</th>
-                            <th>Estado</th>
+                            <th>Detalle</th>
                         </tr>
                     </thead>
                     <tbody id="contTabla">
@@ -41,7 +41,29 @@
                     </tbody>
                 </table>
             </div>
-            
+            <div id="modal_containerDetalle" class="modal-container">
+                <div class="modal">
+                  <h1>Detalles</h1>
+                  <p>Estos son los detalles del pedido</p>
+                  <div class="table">
+                    <div class="table-section-small">
+                      <table style="margin: auto" id="tabla">
+                        <thead>
+                          <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                          </tr>
+                        </thead>
+                        <tbody id="contTablaModal"></tbody>
+                      </table>
+                    </div>
+                  </div>
+          
+                  <a id="closeDetalle" onclick="ocultarDetalle();" class="button"
+                    >Listo</a
+                  >
+                </div>
+              </div>
     </main>
     
 </body>
