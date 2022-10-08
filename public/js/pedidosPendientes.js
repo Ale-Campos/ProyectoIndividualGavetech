@@ -9,7 +9,7 @@ fetch(urlPrincipal + "/pedidosPendientes")
 const mostarData = (data) => {
   const tabla = document.querySelector("#contTabla");
   data.forEach((element) => {
-    console.log(element.idpedido);
+    //Se completa la tabla
     const tr = document.createElement("tr");
     const td1 = document.createElement("td");
     const td2 = document.createElement("td");
@@ -24,13 +24,29 @@ const mostarData = (data) => {
     const button2 = document.createElement("button");
     button2.id = element.idpedido;
     button2.addEventListener("click", () => {
-      //denegarPedido(button2.id); Funca
       mostrar(button2.id);
     });
     const tagIDenied = document.createElement("i");
     const tagIAccept = document.createElement("i");
     tagIDenied.className = "fa-solid fa-circle-xmark";
     tagIAccept.className = "fa-solid fa-square-check";
+
+    const anchorDetalle = document.createElement("a");
+    anchorDetalle.textContent = "Detalles";
+    anchorDetalle.className = "button";
+    //Evento del <a> para mostrar el detalle del pedido
+    anchorDetalle.addEventListener("click", async () => {
+      await fetch(
+        urlPrincipal +
+          `/pedidosPendientes/obtenerItemPedido/${element.idpedido}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          agregarDetalles(data);
+        });
+      //PopUp
+      mostrarDetalle();
+    });
 
     button1.appendChild(tagIAccept);
     button2.appendChild(tagIDenied);
@@ -39,7 +55,7 @@ const mostarData = (data) => {
     td1.textContent = element.idpedido;
     td2.textContent = element.fecha;
     td3.textContent = element.nombre;
-    td4.textContent = element.aprobado;
+    td4.appendChild(anchorDetalle);
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);
@@ -49,6 +65,32 @@ const mostarData = (data) => {
   });
 };
 
+function agregarDetalles(data) {
+  const tabla = document.getElementById("tabla");
+  const tbody = document.createElement("tbody");
+  tabla.removeChild(tabla.lastElementChild);
+  data.forEach((item) => {
+    const tr = document.createElement("tr");
+    const tdDescripcion = document.createElement("td");
+    const tdCantidad = document.createElement("td");
+    tdDescripcion.textContent = item.descripcion;
+    tdCantidad.textContent = item.cantidad;
+
+    tr.appendChild(tdDescripcion);
+    tr.appendChild(tdCantidad);
+    tbody.appendChild(tr);
+  });
+  tabla.appendChild(tbody);
+}
+function ocultarDetalle() {
+  const modal_container = document.getElementById("modal_containerDetalle");
+  modal_container.classList.remove("show");
+}
+function mostrarDetalle() {
+  const modal_container = document.getElementById("modal_containerDetalle");
+  modal_container.classList.add("show");
+}
+
 function aceptarPedido(id) {
   fetch(urlPrincipal + `/pedidosPendientes/getPedido/${id}`)
     .then((res) => res.json())
@@ -56,12 +98,6 @@ function aceptarPedido(id) {
       console.log(data);
       location.reload();
     });
-}
-
-async function denegarPedido(id) {
-  fetch(urlPrincipal + `/pedidosPendientes/deletePedido/${id}`, {
-    method: "DELETE",
-  }).then(() => {});
 }
 
 function mostrar(idPedido) {
@@ -76,7 +112,6 @@ async function ocultar() {
       idpedido: idPedidoDenegado,
       comentario: comentario,
     };
-    console.log(reqBody);
     await fetch(urlPrincipal + "/pedidosPendientes/agregarComentario", {
       method: "PATCH",
       body: JSON.stringify(reqBody),

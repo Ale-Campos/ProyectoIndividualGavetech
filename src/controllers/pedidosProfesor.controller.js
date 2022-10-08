@@ -48,9 +48,25 @@ const agregarComentario = async (req, res) => {
   `);
   res.send("Comentario agregado");
 };
+
+const obtenerItemsPedidos = async (req, res) => {
+  const idpedido = req.params.idpedido;
+  const connection = await getConnection();
+  console.log("ID PEDIDO::::: " + idpedido);
+  const itemsPedidos = await connection.query(`
+  SELECT cantidad, descripcion
+  FROM itempedido INNER JOIN producto
+  WHERE itempedido.producto_id = producto.idproducto AND pedido_id=${idpedido};
+  `);
+  console.log("INFO ENCONTRADA");
+  console.log(itemsPedidos);
+  res.json(itemsPedidos);
+};
+
 export const pedidosProfesorMethods = {
   obtenerPedidosPendientes,
   getPedido,
   deletePedido,
   agregarComentario,
+  obtenerItemsPedidos,
 };

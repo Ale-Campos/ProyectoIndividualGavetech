@@ -9,4 +9,8 @@ router.patch(
   "/agregarComentario",
   pedidosPendientesController.agregarComentario
 );
+router.get(
+  "/obtenerItemPedido/:idpedido",
+  pedidosPendientesController.obtenerItemsPedidos
+);
 export default router;
