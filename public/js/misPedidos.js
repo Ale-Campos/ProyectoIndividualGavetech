@@ -36,8 +36,12 @@ const mostarData = (data) => {
       //PopUp
       mostrarDetalle();
     });
+
+    const fecha = element.fecha.split("T");
+    console.log(fecha);
+
     td1.textContent = element.idpedido;
-    td2.textContent = element.fecha;
+    td2.textContent = fecha[0];
     td3.appendChild(anchor);
     td4.textContent = definirEstado(element);
     td5.appendChild(anchorDetalle);

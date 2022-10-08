@@ -279,9 +279,9 @@ h2 {
   overflow: auto;
 }
 .table-small {
-  width: 1%;
-  table-layout: fixed;
-  min-width: 500px;
+  min-width: 1000px;
+  table-layout: auto;
+  min-width: 100px;
 }
 table {
   width: 100%;
@@ -359,11 +359,12 @@ td button:nth-child(2) {
   height: 200px;
   overflow: auto;
 }
-table {
+.table {
   width: 100%;
-  table-layout: auto;
-  min-width: 100px;
+  table-layout: fixed;
+  min-width: 1000px;
 }
+
 thead th {
   position: sticky;
   top: 0;

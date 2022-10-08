@@ -97,11 +97,11 @@ const enviarStringQr = async (req, res) => {
     for (let index = 0; index < idProducto.length; index++) {
       acutalizarStock(idProducto[index], cantidad[index]);
       await connection.query(`
-      INSERT INTO itempedido (pedido_id, cantidad, producto_id) 
-      VALUES (${idpedido[0].idpedido + 1}, ${cantidad[index]},${
+    INSERT INTO itempedido (pedido_id, cantidad, producto_id) 
+    VALUES (${idpedido[0].idpedido + 1}, ${cantidad[index]},${
         idProducto[index]
       })
-      `);
+    `);
     }
 
     const urlDb = await connection.query(`SELECT string_qr 
