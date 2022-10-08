@@ -52,8 +52,9 @@ const mostarData = (data) => {
     button2.appendChild(tagIDenied);
     td5.appendChild(button1);
     td5.appendChild(button2);
+    const fecha = element.fecha.split("T");
     td1.textContent = element.idpedido;
-    td2.textContent = element.fecha;
+    td2.textContent = fecha[0];
     td3.textContent = element.nombre;
     td4.appendChild(anchorDetalle);
     tr.appendChild(td1);

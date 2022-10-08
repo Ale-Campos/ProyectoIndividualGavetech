@@ -38,7 +38,6 @@ const mostarData = (data) => {
     });
 
     const fecha = element.fecha.split("T");
-    console.log(fecha);
 
     td1.textContent = element.idpedido;
     td2.textContent = fecha[0];
