@@ -19,6 +19,17 @@
       src="https://kit.fontawesome.com/08d50d8048.js"
       crossorigin="anonymous"
     ></script>
+    <!--SELECT2-->
+    <script src="./../js/select2/jquery-3.1.1.min.js"></script>
+    <script src="./../js/select2/select2.full.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./../css/select2.css" />
+    <link rel="stylesheet" href="./../css/select2.min.css" />
+    <link rel="stylesheet" href="./../css/style.css" />
+    <!--  -->
   </head>
 
   <!--cuerpo de la pagina-->
@@ -38,8 +49,8 @@
     </header>
     <!--contenido principal de la página-->
     <main class="main-container">
-      <form class="formulario">
-        <h1>Cargar nuevo componente</h1>
+      <h1>Cargar nuevo componente</h1>
+      <div class="formulario">
         <div class="contenedor">
           <div class="input-contenedor">
             <input type="text" placeholder="Descripcion" id="descripcion" />
@@ -56,10 +67,31 @@
           <div class="input-contenedor">
             <input type="text" placeholder="Gaveta" id="gaveta" />
           </div>
-
-          <a onclick="cargarComponentes();" class="button">Cargar</a>
+          <div class="input-contenedor">
+            <select
+              class="js-box2"
+              name="producto1"
+              id="select2"
+              style="width: 459px"
+            >
+              <option selected value="SC">Seleccione un componente</option>
+            </select>
+          </div>
+          <br />
+          <div>
+            <button onclick="cargarComponentes();" class="button">
+              Cargar
+            </button>
+          </div>
         </div>
-      </form>
+      </div>
+
+      <script>
+        // In your Javascript (external .js resource or <script> tag)
+        $(document).ready(function () {
+          $(".js-box2").select2();
+        });
+      </script>
     </main>
   </body>
   <footer>

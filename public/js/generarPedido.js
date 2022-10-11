@@ -1,10 +1,10 @@
 let selecciones = [];
 fetch(window.location + "/list")
   .then((response) => response.json())
-  .then((data) => mostarData(data))
+  .then((data) => cagrarSelect2(data))
   .catch((err) => console.log(err));
 
-const mostarData = (data) => {
+const cagrarSelect2 = (data) => {
   console.log(data);
   const select2 = document.getElementById("select2");
   for (let index = 0; index < data.length; index++) {
