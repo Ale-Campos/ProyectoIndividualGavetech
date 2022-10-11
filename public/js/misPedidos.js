@@ -1,4 +1,7 @@
 const urlPrincipal = "http://localhost:4000";
+const imgPendiente =
+  "https://st2.depositphotos.com/47577860/46188/v/600/depositphotos_461884700-stock-illustration-account-pending-profile-pending-user.jpg";
+const imgRechazado = "https://cdn-icons-png.flaticon.com/512/251/251278.png";
 let pedidos;
 fetch(urlPrincipal + "/misPedidos")
   .then((response) => response.json())
@@ -19,7 +22,7 @@ const mostarData = (data) => {
     const td6 = document.createElement("td");
     const img = document.createElement("img");
     const anchor = document.createElement("a");
-    anchor.href = element.string_qr;
+
     const anchorDetalle = document.createElement("a");
     anchorDetalle.textContent = "Detalles";
     anchorDetalle.className = "button";
@@ -41,11 +44,25 @@ const mostarData = (data) => {
 
     td1.textContent = element.idpedido;
     td2.textContent = fecha[0];
+
+    const estado = definirEstado(element);
+    td4.textContent = estado;
+    switch (estado) {
+      case "Aprobado":
+        img.src = element.string_qr;
+        anchor.href = element.string_qr;
+        break;
+      case "Pendiente":
+        img.src = imgPendiente;
+        anchor.href = imgPendiente;
+        break;
+      default:
+        img.src = imgRechazado;
+        anchor.href = imgRechazado;
+    }
     td3.appendChild(anchor);
-    td4.textContent = definirEstado(element);
     td5.appendChild(anchorDetalle);
     td6.textContent = element.comentario;
-    img.src = element.string_qr;
     anchor.appendChild(img);
 
     tr.appendChild(td1);
