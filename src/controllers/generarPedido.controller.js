@@ -1,6 +1,7 @@
 import { getConnection } from "../database/database";
-import { qrMethods } from "./../qr/Encriptacion-V1";
+import { cryptMethods } from "./../qr/Encriptacion-V1";
 import { usuarioLogueado } from "./login.controller";
+import QRCode from "qrcode";
 
 const generarPedido = (req, res) => {
   if (usuarioLogueado.estaLogeado) {
@@ -63,10 +64,11 @@ const enviarStringQr = async (req, res) => {
 
   console.log(obj);
 
-  const stringEncriptado = qrMethods.encrypt(string);
-  const stringDesencriptado = qrMethods.decrypt(stringEncriptado);
+  const stringEncriptado = cryptMethods.encrypt(string);
+  const stringDesencriptado = cryptMethods.decrypt(stringEncriptado);
   ////CAMBIAR stringDesencriptado por stringEncriptado, es solo de preueba
-  qrMethods.QRCode.toDataURL(stringDesencriptado, async (err, data) => {
+
+  QRCode.toDataURL(stringDesencriptado, async (err, data) => {
     if (err) throw err;
 
     const idAlumnoCurso = JSON.stringify(
