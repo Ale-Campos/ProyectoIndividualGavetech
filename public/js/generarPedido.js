@@ -1,3 +1,4 @@
+const urlPrincipal = "http://localhost:4000";
 let selecciones = [];
 fetch(window.location + "/list")
   .then((response) => response.json())
@@ -34,7 +35,7 @@ async function consularStock(value) {
   if (value == "SC") {
     return (cantidad = 0);
   }
-  await fetch(`http://localhost:4000/generarPedido/select/${value}`)
+  await fetch(urlPrincipal + `/generarPedido/select/${value}`)
     .then((response) => response.json())
     .then((data) => (cantidad = data[0].stock_virtual));
   return cantidad;

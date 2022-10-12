@@ -1,7 +1,7 @@
 import { getConnection } from "../database/database";
 import path from "path";
 import bcryptjs from "bcryptjs";
-import { log } from "console";
+import config from "./../config";
 
 const register = async (req, res) => {
   const { dni, nombre, apellido, email, contraseña, curso } = req.body;
@@ -44,7 +44,7 @@ const register = async (req, res) => {
               } else {
                 res.json({
                   result: "correcto",
-                  redirect: "http://localhost:4000/login/",
+                  redirect: config.url + "/login/",
                 });
               }
             }

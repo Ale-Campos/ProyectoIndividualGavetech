@@ -1,6 +1,7 @@
 import { getConnection } from "../database/database";
 import path from "path";
 import bcryptjs from "bcryptjs";
+import config from "./../config.js";
 let usuario = {
   id: null,
   nombre: null,
@@ -34,7 +35,7 @@ const login = async (req, res) => {
         console.log("REDIRECCIONO");
         res.json({
           result: "correcto",
-          redirect: "http://localhost:4000/menuAlumno/",
+          redirect: config.url + "/menuAlumno/",
         });
         console.log("Es alumno");
       } else {
@@ -55,7 +56,7 @@ const login = async (req, res) => {
         console.log("Es profesor");
         res.json({
           result: "correcto",
-          redirect: "http://localhost:4000/menuProfesor/",
+          redirect: config.url + "/menuProfesor/",
         });
       } else {
         console.log("Es profe pero las contraseñas no coinciden");
@@ -81,7 +82,7 @@ const prueba = (req, res) => {
   res.json(usuario);
 };
 const pruebaDeslog = (req, res) => {
-  usuario.id=0;
+  usuario.id = 0;
   usuario.esProfesor = false;
   usuario.estaLogeado = false;
   usuario.dni = null;
