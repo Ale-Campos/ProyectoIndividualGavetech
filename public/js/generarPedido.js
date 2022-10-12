@@ -16,13 +16,11 @@ const cagrarSelect2 = (data) => {
 };
 
 async function controlCant() {
-  console.log("CONTROLCANT");
   let select = document.getElementById("select2");
   const inputCant = document.getElementById("cant1");
   inputCant.value = 1;
   const stock = await consularStock(select.value);
   if (stock <= 0) {
-    console.log("ENTRE AL IF");
     inputCant.max = 0;
     inputCant.value = 0;
   } else {
@@ -72,7 +70,6 @@ function agregarAPedido() {
       botonAnchor.textContent = "Quitar";
       botonAnchor.className = "button";
       botonAnchor.addEventListener("click", () => {
-        console.log("TENGO EL EVENTO");
         quitarProducto(botonAnchor.id);
       });
       tdIdProd.textContent = seleccion.idproducto;
