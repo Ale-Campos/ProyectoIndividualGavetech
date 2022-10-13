@@ -1,14 +1,10 @@
 import { getConnection } from "../database/database";
 import { cryptMethods } from "./../qr/Encriptacion-V1";
-import { usuarioLogueado } from "./login.controller";
+
 import QRCode from "qrcode";
 
 const generarPedido = (req, res) => {
-  if (usuarioLogueado.estaLogeado) {
-    res.render("GenerarPedido");
-  } else {
-    res.render("AccesoDenegado");
-  }
+  res.render("GenerarPedido");
 };
 const getProducts = async (req, res) => {
   try {
@@ -53,7 +49,7 @@ const enviarStringQr = async (req, res) => {
     descripcion +
     "/" +
     cantidad +
-    `/${usuarioLogueado.id},${usuarioLogueado.nombre}, ${usuarioLogueado.apellido}`;
+    `/${req.session.usuario.id},${req.session.usuario.nombre}, ${req.session.usuario.apellido}`;
 
   console.log("String:::::");
   console.log(string);
@@ -73,7 +69,7 @@ const enviarStringQr = async (req, res) => {
 
     const idAlumnoCurso = JSON.stringify(
       await connection.query(
-        `select idalumnocurso from alumnocurso where alumno_id = ${usuarioLogueado.id} `
+        `select idalumnocurso from alumnocurso where alumno_id = ${req.session.usuario.id} `
       )
     );
     console.log(idAlumnoCurso);

@@ -2,13 +2,7 @@ import { getConnection } from "../database/database";
 import path from "path";
 import bcryptjs from "bcryptjs";
 import config from "./../config.js";
-let usuario = {
-  id: null,
-  nombre: null,
-  apellido: null,
-  estaLogeado: false,
-  esProfesor: false,
-};
+
 const login = async (req, res) => {
   const { email, contraseña } = req.body;
   if (email == "" || contraseña == "") {
@@ -27,11 +21,14 @@ const login = async (req, res) => {
     );
     if (alumno.length != 0) {
       if (await bcryptjs.compare(contraseña, alumno[0].contraseña)) {
-        console.log("Las contraseñas coinciden");
-        usuario.estaLogeado = true;
-        usuario.id = alumno[0].dni;
-        usuario.nombre = alumno[0].nombre;
-        usuario.apellido = alumno[0].apellido;
+        req.session.usuario = {
+          id: alumno[0].dni,
+          nombre: alumno[0].nombre,
+          apellido: alumno[0].apellido,
+          estaLogeado: true,
+          esProfesor: false,
+        };
+        console.log(req.session.usuario);
         console.log("REDIRECCIONO");
         res.json({
           result: "correcto",
@@ -48,11 +45,14 @@ const login = async (req, res) => {
     } else if (profesor.length != 0) {
       if (await bcryptjs.compare(contraseña, profesor[0].contraseña)) {
         console.log("Las contraseñas coinciden");
-        usuario.estaLogeado = true;
-        usuario.esProfesor = true;
-        usuario.id = profesor[0].dni;
-        usuario.nombre = profesor[0].nombre;
-        usuario.apellido = profesor[0].apellido;
+
+        req.session.usuario = {
+          id: profesor[0].dni,
+          nombre: profesor[0].nombre,
+          apellido: profesor[0].apellido,
+          estaLogeado: true,
+          esProfesor: true,
+        };
         console.log("Es profesor");
         res.json({
           result: "correcto",
@@ -75,22 +75,31 @@ const login = async (req, res) => {
   }
 };
 const loginView = (req, res) => {
+  req.session.usuario = {
+    id: null,
+    nombre: null,
+    apellido: null,
+    estaLogeado: false,
+    esProfesor: false,
+  };
+  console.log(req.session.usuario);
   res.render("login");
 };
 
 const prueba = (req, res) => {
-  res.json(usuario);
+  // res.json(usuario);
 };
 const pruebaDeslog = (req, res) => {
-  usuario.id = 0;
-  usuario.esProfesor = false;
-  usuario.estaLogeado = false;
-  usuario.dni = null;
-  usuario.nombre = null;
-  usuario.apellido = null;
-  res.json(usuario);
+  req.session.usuario = {
+    id: null,
+    nombre: null,
+    apellido: null,
+    estaLogeado: false,
+    esProfesor: false,
+  };
+  res.json(req.session.usuario);
 };
-export const usuarioLogueado = usuario;
+
 export const loginMethods = {
   login,
   loginView,
