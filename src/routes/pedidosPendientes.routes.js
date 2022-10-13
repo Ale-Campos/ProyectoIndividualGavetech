@@ -25,7 +25,7 @@ router.patch(
 );
 router.get(
   "/obtenerItemPedido/:idpedido",
-  authController.validarProfesor,
+  authController.validarLogueo,
   pedidosPendientesController.obtenerItemsPedidos
 );
 export default router;

@@ -21,8 +21,16 @@ const validarProfesor = (req, res, next) => {
     res.render("AccesoDenegado");
   }
 };
+const validarLogueo = (req, res, next) => {
+  if (req.session.usuario.estaLogeado) {
+    next();
+  } else {
+    res.render("AccesoDenegado");
+  }
+};
 
 export const authController = {
   validarAlumno,
   validarProfesor,
+  validarLogueo,
 };

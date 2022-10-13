@@ -43,7 +43,14 @@ async function consularStock(value) {
 
 function agregarAPedido() {
   let select = document.getElementById("select2").value;
-  if (select != "SC") {
+  const cantidad = document.getElementById("cant1");
+
+  console.log("CANTIDAD MAXIMA: " + cantidad.max);
+  console.log("CANTIDAD ACTUAL: " + cantidad.value);
+  console.log(
+    select != "SC" && parseInt(cantidad.max) >= parseInt(cantidad.value)
+  );
+  if (select != "SC" && parseInt(cantidad.max) >= parseInt(cantidad.value)) {
     fetch(window.location + `/select/${select}`)
       .then((response) => response.json())
       .then((data) => imprimirResultado(data))
@@ -83,6 +90,9 @@ function agregarAPedido() {
       tr.appendChild(tdBoton);
       tabla.appendChild(tr);
     };
+  } else {
+    cantidad.value = cantidad.max;
+    window.alert("Stock insuficiente");
   }
 }
 
