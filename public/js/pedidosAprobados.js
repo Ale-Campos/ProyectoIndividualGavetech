@@ -1,12 +1,15 @@
 const urlPrincipal = "http://localhost:4000";
-
+let pedidos = [];
 fetch(urlPrincipal + "/pedidosAprobados")
   .then((response) => response.json())
-  .then((data) => mostarData(data))
+  .then((data) => {
+    pedidos = data;
+    mostarData(pedidos);
+  })
   .catch((err) => console.log(err));
-const mostarData = (data) => {
+const mostarData = (pedidos) => {
   const tabla = document.querySelector("#contTabla");
-  data.forEach((element) => {
+  pedidos.forEach((element) => {
     console.log(element.idpedido);
     const tr = document.createElement("tr");
     const td1 = document.createElement("td");
@@ -33,7 +36,7 @@ const mostarData = (data) => {
     td5.appendChild(anchorDetalle);
     td1.textContent = element.idpedido;
     td2.textContent = fecha[0];
-    td3.textContent = element.nombre;
+    td3.textContent = `${element.nombre} ${element.apellido}`;
     tr.appendChild(td1);
     tr.appendChild(td2);
     tr.appendChild(td3);
@@ -43,11 +46,11 @@ const mostarData = (data) => {
   });
 };
 
-function agregarDetalles(data) {
+function agregarDetalles(pedidos) {
   const tabla = document.getElementById("tabla");
   const tbody = document.createElement("tbody");
   tabla.removeChild(tabla.lastElementChild);
-  data.forEach((item) => {
+  pedidos.forEach((item) => {
     const tr = document.createElement("tr");
     const tdDescripcion = document.createElement("td");
     const tdCantidad = document.createElement("td");
@@ -67,4 +70,46 @@ function ocultarDetalle() {
 function mostrarDetalle() {
   const modal_container = document.getElementById("modal_containerDetalle");
   modal_container.classList.add("show");
+}
+
+function filtrarNombres() {
+  const nombre = document.getElementById("filtroNombre").value;
+  if (nombre != "") {
+    const filtrado = pedidos.filter(
+      (item) => item.nombre.includes(nombre) || item.apellido.includes(nombre)
+    );
+    const tabla = document.querySelector("#contTabla");
+    const childs = tabla.childElementCount;
+    for (let index = 0; index < childs; index++) {
+      tabla.removeChild(tabla.firstElementChild);
+    }
+    mostarData(filtrado);
+  } else {
+    const tabla = document.querySelector("#contTabla");
+    const childs = tabla.childElementCount;
+    for (let index = 0; index < childs; index++) {
+      tabla.removeChild(tabla.firstElementChild);
+    }
+    mostarData(pedidos);
+  }
+}
+
+function filtrarPedidos() {
+  const nroPedido = document.getElementById("filtroPedido").value;
+  if (nroPedido != "") {
+    const filtrado = pedidos.filter((item) => item.idpedido == nroPedido);
+    const tabla = document.querySelector("#contTabla");
+    const childs = tabla.childElementCount;
+    for (let index = 0; index < childs; index++) {
+      tabla.removeChild(tabla.firstElementChild);
+    }
+    mostarData(filtrado);
+  } else {
+    const tabla = document.querySelector("#contTabla");
+    const childs = tabla.childElementCount;
+    for (let index = 0; index < childs; index++) {
+      tabla.removeChild(tabla.firstElementChild);
+    }
+    mostarData(pedidos);
+  }
 }
