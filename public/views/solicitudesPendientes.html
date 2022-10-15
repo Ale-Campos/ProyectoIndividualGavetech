@@ -40,9 +40,28 @@
         <table class="table">
           <thead>
             <tr>
-              <th>Numero</th>
+              <th>
+                Numero <br />
+                <input
+                  id="filtroPedido"
+                  type="number"
+                  style="width: 50%; height: 20px"
+                  placeholder="Buscar Nro Pedido"
+                  min="1"
+                  onchange="filtrarPedidos();"
+                />
+              </th>
               <th>Fecha</th>
-              <th>Alumno</th>
+              <th>
+                Alumno <br />
+                <input
+                  id="filtroNombre"
+                  type="text"
+                  style="width: 55%; height: 10px"
+                  placeholder="Buscar Nombre"
+                  onchange="filtrarNombres();"
+                />
+              </th>
               <th>Detalle</th>
               <th>Aceptar/Rechazar</th>
             </tr>

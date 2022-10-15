@@ -1,9 +1,12 @@
 const urlPrincipal = "http://localhost:4000";
-let pedidos = null;
+let pedidos = [];
 let idPedidoDenegado = 0;
 fetch(urlPrincipal + "/pedidosPendientes")
   .then((response) => response.json())
-  .then((data) => mostarData(data))
+  .then((data) => {
+    pedidos = data;
+    mostarData(data);
+  })
   .catch((err) => console.log(err));
 //<button><i class="fa-solid fa-circle-xmark"></i></button>
 const mostarData = (data) => {
@@ -55,7 +58,7 @@ const mostarData = (data) => {
     const fecha = element.fecha.split("T");
     td1.textContent = element.idpedido;
     td2.textContent = fecha[0];
-    td3.textContent = element.nombre;
+    td3.textContent = `${element.nombre} ${element.apellido}`;
     td4.appendChild(anchorDetalle);
     tr.appendChild(td1);
     tr.appendChild(td2);
@@ -125,4 +128,45 @@ async function ocultar() {
   const modal_container = document.getElementById("modal_container");
   modal_container.classList.remove("show");
   location.reload();
+}
+function filtrarNombres() {
+  const nombre = document.getElementById("filtroNombre").value;
+  if (nombre != "") {
+    const filtrado = pedidos.filter(
+      (item) => item.nombre.includes(nombre) || item.apellido.includes(nombre)
+    );
+    const tabla = document.querySelector("#contTabla");
+    const childs = tabla.childElementCount;
+    for (let index = 0; index < childs; index++) {
+      tabla.removeChild(tabla.firstElementChild);
+    }
+    mostarData(filtrado);
+  } else {
+    const tabla = document.querySelector("#contTabla");
+    const childs = tabla.childElementCount;
+    for (let index = 0; index < childs; index++) {
+      tabla.removeChild(tabla.firstElementChild);
+    }
+    mostarData(pedidos);
+  }
+}
+
+function filtrarPedidos() {
+  const nroPedido = document.getElementById("filtroPedido").value;
+  if (nroPedido != "") {
+    const filtrado = pedidos.filter((item) => item.idpedido == nroPedido);
+    const tabla = document.querySelector("#contTabla");
+    const childs = tabla.childElementCount;
+    for (let index = 0; index < childs; index++) {
+      tabla.removeChild(tabla.firstElementChild);
+    }
+    mostarData(filtrado);
+  } else {
+    const tabla = document.querySelector("#contTabla");
+    const childs = tabla.childElementCount;
+    for (let index = 0; index < childs; index++) {
+      tabla.removeChild(tabla.firstElementChild);
+    }
+    mostarData(pedidos);
+  }
 }
