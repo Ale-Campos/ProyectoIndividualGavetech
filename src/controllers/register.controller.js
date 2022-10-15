@@ -64,7 +64,18 @@ const registerView = (req, res) => {
   res.sendFile(path.resolve(__dirname, "./../../public/views/register.html"));
 };
 
+const obtenerCursos = async (req, res) => {
+  const connection = await getConnection();
+
+  const cursos = await connection.query(`
+  SELECT id_curso FROM curso
+  `);
+  console.log(cursos);
+  res.json(cursos);
+};
+
 export const methodsAlumnos = {
   register,
   registerView,
+  obtenerCursos,
 };

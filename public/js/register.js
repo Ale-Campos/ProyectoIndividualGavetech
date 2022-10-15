@@ -1,10 +1,28 @@
 const urlPrincipal = "http://localhost:4000";
 
+fetch(window.location + "/obtenerCursos")
+  .then((response) => response.json())
+  .then((data) => cagrarSelect2(data))
+  .catch((err) => console.log(err));
+
+const cagrarSelect2 = (data) => {
+  console.log(data);
+  const select2 = document.getElementById("select2");
+  for (let index = 0; index < data.length; index++) {
+    let option = document.createElement("option");
+    option.text = data[index].id_curso;
+
+    option.value = data[index].id_curso;
+    select2.appendChild(option);
+    console.log(data[index].idcategoria);
+  }
+};
+
 function agregarAlumno() {
   const dni = document.querySelector("#dni").value;
   const nombre = document.querySelector("#nombre").value;
   const apellido = document.querySelector("#apellido").value;
-  const curso = document.querySelector("#curso").value;
+  const curso = document.querySelector("#select2").value;
   const email = document.querySelector("#email").value;
   const contraseña = document.querySelector("#contraseña").value;
   console.log(nombre);

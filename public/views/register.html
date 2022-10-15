@@ -18,6 +18,24 @@
       crossorigin="anonymous"
     ></script>
     <script src="./../js/register.js"></script>
+
+    <!--SELECT2-->
+    <script src="./../js/select2/jquery-3.1.1.min.js"></script>
+    <script src="./../js/select2/select2.full.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./../css/select2.css" />
+    <link rel="stylesheet" href="./../css/select2.min.css" />
+    <link rel="stylesheet" href="./../css/style.css" />
+    <script>
+      // In your Javascript (external .js resource or <script> tag)
+      $(document).ready(function () {
+        $(".js-box2").select2();
+      });
+    </script>
+    <!--  -->
   </head>
 
   <body>
@@ -45,8 +63,14 @@
           </div>
 
           <div class="input-contenedor">
-            <i class="fas fa-user icon"></i>
-            <input id="curso" type="text" placeholder='Curso.- Ej:"4A"' />
+            <select
+              class="js-box2"
+              name="producto1"
+              id="select2"
+              style="width: 459px"
+            >
+              <option selected value="SC">Seleccione un Curso</option>
+            </select>
           </div>
 
           <div class="input-contenedor">
@@ -63,6 +87,7 @@
             <i class="fas fa-key icon"></i>
             <input id="contraseña" type="password" placeholder="Contraseña" />
           </div>
+
           <button
             type="submit"
             value="Registrarse"
