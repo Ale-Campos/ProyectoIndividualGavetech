@@ -1,8 +1,9 @@
 const validarAlumno = (req, res, next) => {
-  console.log(
-    "PASO POR VALIDAR ALUMNO -------------------------------------------------------------------------------------------------------------------------------"
-  );
-  if (req.session.usuario.estaLogeado && !req.session.usuario.esProfesor) {
+  if (
+    req.session.usuario &&
+    req.session.usuario.estaLogeado &&
+    !req.session.usuario.esProfesor
+  ) {
     next();
   } else {
     res.render("AccesoDenegado");
@@ -10,19 +11,18 @@ const validarAlumno = (req, res, next) => {
 };
 
 const validarProfesor = (req, res, next) => {
-  console.log(
-    "PASO POR VALIDAR PROFESOR -------------------------------------------------------------------------------------------------------------------------------"
-  );
-  console.log(req.session.usuario.estaLogeado);
-  console.log(req.session.usuario.esProfesor);
-  if (req.session.usuario.estaLogeado && req.session.usuario.esProfesor) {
+  if (
+    req.session.usuario &&
+    req.session.usuario.estaLogeado &&
+    req.session.usuario.esProfesor
+  ) {
     next();
   } else {
     res.render("AccesoDenegado");
   }
 };
 const validarLogueo = (req, res, next) => {
-  if (req.session.usuario.estaLogeado) {
+  if (req.session.usuario && req.session.usuario.estaLogeado) {
     next();
   } else {
     res.render("AccesoDenegado");
