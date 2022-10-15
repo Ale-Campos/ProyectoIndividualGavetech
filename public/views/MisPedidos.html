@@ -44,7 +44,15 @@
                 <th>Numero</th>
                 <th>Fecha</th>
                 <th>QR</th>
-                <th>Estado</th>
+                <th>
+                  Estado <br />
+                  <select id="filtroEstado" onchange="filtrarEstado();">
+                    <option value="SF">Sin Filtro</option>
+                    <option value="Aprobado">Aprobados</option>
+                    <option value="Pendiente">Pendientes</option>
+                    <option value="Rechazado">Rechazados</option>
+                  </select>
+                </th>
                 <th>Detalle</th>
                 <th>Comentario</th>
               </tr>

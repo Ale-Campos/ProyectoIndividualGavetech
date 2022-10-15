@@ -2,10 +2,13 @@ const urlPrincipal = "http://localhost:4000";
 const imgPendiente =
   "https://st2.depositphotos.com/47577860/46188/v/600/depositphotos_461884700-stock-illustration-account-pending-profile-pending-user.jpg";
 const imgRechazado = "https://cdn-icons-png.flaticon.com/512/251/251278.png";
-let pedidos;
+let pedidos = [];
 fetch(urlPrincipal + "/misPedidos")
   .then((response) => response.json())
-  .then((data) => mostarData(data))
+  .then((data) => {
+    pedidos = data;
+    mostarData(pedidos);
+  })
   .catch((err) => console.log(err));
 
 const mostarData = (data) => {
@@ -111,4 +114,37 @@ function ocultarDetalle() {
 function mostrarDetalle() {
   const modal_container = document.getElementById("modal_containerDetalle");
   modal_container.classList.add("show");
+}
+
+function filtrarEstado() {
+  const estado = document.getElementById("filtroEstado").value;
+  let filtrado = [];
+  if (estado != "SF") {
+    switch (estado) {
+      case "Aprobado":
+        filtrado = pedidos.filter((item) => item.aprobado == 1);
+        break;
+      case "Rechazado":
+        filtrado = pedidos.filter((item) => item.rechazado == 1);
+        break;
+      case "Pendiente":
+        filtrado = pedidos.filter(
+          (item) => item.rechazado == 0 && item.aprobado == 0
+        );
+        break;
+    }
+    const tabla = document.querySelector("#contTabla");
+    const childs = tabla.childElementCount;
+    for (let index = 0; index < childs; index++) {
+      tabla.removeChild(tabla.firstElementChild);
+    }
+    mostarData(filtrado);
+  } else {
+    const tabla = document.querySelector("#contTabla");
+    const childs = tabla.childElementCount;
+    for (let index = 0; index < childs; index++) {
+      tabla.removeChild(tabla.firstElementChild);
+    }
+    mostarData(pedidos);
+  }
 }
