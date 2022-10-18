@@ -16,6 +16,7 @@ const mostarData = (pedidos) => {
     const td2 = document.createElement("td");
     const td3 = document.createElement("td");
     const td5 = document.createElement("td");
+    const td6 = document.createElement("td");
     const anchorDetalle = document.createElement("a");
     anchorDetalle.textContent = "Detalles";
     anchorDetalle.className = "button";
@@ -32,8 +33,26 @@ const mostarData = (pedidos) => {
       //PopUp
       mostrarDetalle();
     });
+    //DEVOLUCIONES
+    const anchorDevolucion = document.createElement("a");
+    anchorDevolucion.textContent = "Devolucion";
+    anchorDevolucion.className = "button";
+
+    anchorDevolucion.addEventListener("click", async () => {
+      await fetch(
+        urlPrincipal +
+          `/pedidosAprobados/obtenerDevoluciones/${element.idpedido}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          agregarDevoluciones(data);
+        });
+      //PopUp
+      mostrarDevoluciones();
+    });
     const fecha = element.fecha.split("T");
     td5.appendChild(anchorDetalle);
+    td6.appendChild(anchorDevolucion);
     td1.textContent = element.idpedido;
     td2.textContent = fecha[0];
     td3.textContent = `${element.nombre} ${element.apellido}`;
@@ -42,6 +61,7 @@ const mostarData = (pedidos) => {
     tr.appendChild(td3);
 
     tr.appendChild(td5);
+    tr.appendChild(td6);
     tabla.appendChild(tr);
   });
 };
@@ -63,6 +83,23 @@ function agregarDetalles(pedidos) {
   });
   tabla.appendChild(tbody);
 }
+function agregarDevoluciones(devoluciones) {
+  const tabla = document.getElementById("tablaDevoluciones");
+  const tbody = document.createElement("tbody");
+  tabla.removeChild(tabla.lastElementChild);
+  devoluciones.forEach((item) => {
+    const tr = document.createElement("tr");
+    const tdDescripcion = document.createElement("td");
+    const tdCantidad = document.createElement("td");
+    tdDescripcion.textContent = item.descripcion;
+    tdCantidad.textContent = item.cantidad;
+
+    tr.appendChild(tdDescripcion);
+    tr.appendChild(tdCantidad);
+    tbody.appendChild(tr);
+  });
+  tabla.appendChild(tbody);
+}
 function ocultarDetalle() {
   const modal_container = document.getElementById("modal_containerDetalle");
   modal_container.classList.remove("show");
@@ -70,6 +107,18 @@ function ocultarDetalle() {
 function mostrarDetalle() {
   const modal_container = document.getElementById("modal_containerDetalle");
   modal_container.classList.add("show");
+}
+function mostrarDevoluciones() {
+  const modal_container = document.getElementById(
+    "modal_containerDevoluciones"
+  );
+  modal_container.classList.add("show");
+}
+function ocultarDevoluciones() {
+  const modal_container = document.getElementById(
+    "modal_containerDevoluciones"
+  );
+  modal_container.classList.remove("show");
 }
 
 function filtrarNombres() {

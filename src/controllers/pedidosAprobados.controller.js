@@ -9,6 +9,18 @@ const getPedidosAprobados = async (req, res) => {
   res.json(pedidosPendientes);
 };
 
+const getDevoluciones = async (req, res) => {
+  const idpedido = req.params.idpedido;
+  const connection = await getConnection();
+  const devoluciones = await connection.query(`
+  SELECT descripcion, cantidad FROM devolucion INNER JOIN producto WHERE devolucion.id_pedido = ${idpedido} AND producto.idproducto = devolucion.id_producto
+  
+  `);
+  console.log(devoluciones);
+  res.json(devoluciones);
+};
+
 export const pedidosAprobadosMethods = {
   getPedidosAprobados,
+  getDevoluciones,
 };

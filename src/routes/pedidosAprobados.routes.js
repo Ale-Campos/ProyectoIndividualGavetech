@@ -8,5 +8,9 @@ router.get(
   authController.validarProfesor,
   pedidosAprobadosController.getPedidosAprobados
 );
+router.get(
+  "/obtenerDevoluciones/:idpedido",
+  pedidosAprobadosController.getDevoluciones
+);
 
 export default router;
