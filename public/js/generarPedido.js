@@ -63,6 +63,7 @@ function agregarAPedido() {
         descripcion: data[0].descripcion,
         idproducto: data[0].idproducto,
         cantidad: cantidad,
+        posicion: data[0].posicion
       };
       agregarSelecciones(seleccion);
       console.log("Selecciones");
@@ -115,11 +116,13 @@ async function enviarPedido() {
   let idProducto = [];
   let cantidad = [];
   let descripcion = [];
+  let posicion=[];
   //Formamos los strings
   selecciones.forEach((x) => {
     idProducto.push(x.idproducto);
     cantidad.push(x.cantidad);
     descripcion.push(x.descripcion);
+    posicion.push(x.posicion)
   });
   if (selecciones.length == 0) {
     window.alert("No se han seleccionado componentes");
@@ -130,6 +133,7 @@ async function enviarPedido() {
     idProducto: idProducto,
     cantidad: cantidad,
     descripcion: descripcion,
+    posicion: posicion
   };
   console.log(json);
   //Enviamos por el post de la api

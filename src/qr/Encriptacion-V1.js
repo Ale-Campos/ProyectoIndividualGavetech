@@ -3,12 +3,13 @@
 const crypto = require("crypto"); //Requiere instalar "Crypto"
 const ENC_KEY = "bf3c199c2470cb477d907b1e0917c17b"; // set random encryption key (clave de encriptacion)
 const IV = "5183666c72eec9e4"; // set random initialisation vector (vector de inicializacion)
+const ALGORITHM = "aes-256-cbc"
 // ENC_KEY and IV can be generated as crypto.randomBytes(32).toString('hex')
 const phrase = "PIC16F876A";
 
 const encrypt = (val) => {
   //Encripta
-  let cipher = crypto.createCipheriv("aes-256-cbc", ENC_KEY, IV);
+  let cipher = crypto.createCipheriv(ALGORITHM, ENC_KEY, IV);
   let encrypted = cipher.update(val, "utf8", "base64");
   encrypted += cipher.final("base64");
   return encrypted; //Devuelve lo encriptado

@@ -33,7 +33,7 @@ const getProduct = async (req, res) => {
 };
 const enviarStringQr = async (req, res) => {
   console.log(req.body);
-  const { idProducto, cantidad, descripcion } = req.body;
+  const { idProducto, cantidad, descripcion, posicion } = req.body;
   const connection = await getConnection();
   const idpedido = await connection.query(`
   SELECT idpedido FROM pedido ORDER BY idpedido DESC LIMIT 1
@@ -45,7 +45,7 @@ const enviarStringQr = async (req, res) => {
     1 +
     "/" +
     idProducto +
-    "/" +
+    "/" + posicion + "/"+
     descripcion +
     "/" +
     cantidad +
@@ -64,7 +64,7 @@ const enviarStringQr = async (req, res) => {
   const stringDesencriptado = cryptMethods.decrypt(stringEncriptado);
   ////CAMBIAR stringDesencriptado por stringEncriptado, es solo de preueba
 
-  QRCode.toDataURL(stringDesencriptado, async (err, data) => {
+  QRCode.toDataURL(stringEncriptado, async (err, data) => {
     if (err) throw err;
 
     const idAlumnoCurso = JSON.stringify(
