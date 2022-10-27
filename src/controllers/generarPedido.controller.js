@@ -64,7 +64,7 @@ const enviarStringQr = async (req, res) => {
   const stringDesencriptado = cryptMethods.decrypt(stringEncriptado);
   ////CAMBIAR stringDesencriptado por stringEncriptado, es solo de preueba
 
-  QRCode.toDataURL(stringEncriptado, async (err, data) => {
+  QRCode.toDataURL(stringDesencriptado, async (err, data) => {
     if (err) throw err;
 
     const idAlumnoCurso = JSON.stringify(

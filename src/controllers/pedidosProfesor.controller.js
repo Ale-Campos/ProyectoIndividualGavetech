@@ -4,7 +4,7 @@ import { usuarioLogueado } from "./login.controller";
 const obtenerPedidosPendientes = async (req, res) => {
   const connection = await getConnection();
   const pedidosPendientes = await connection.query(
-    `select idpedido,fecha,alumno.nombre, alumno.apellido,aprobado from pedido,alumnocurso inner join alumno where pedido.alumnocurso_id = alumnocurso.idalumnocurso and alumnocurso.alumno_id = alumno.dni and pedido.aprobado=0 and rechazado=0;`
+    `select idpedido,fecha,alumno.nombre, alumno.apellido,aprobado from pedido,alumnocurso inner join alumno where pedido.alumnocurso_id = alumnocurso.idalumnocurso and alumnocurso.alumno_id = alumno.dni and pedido.aprobado=0 and rechazado=0 ORDER BY idpedido DESC;`
   );
   console.log(pedidosPendientes);
   res.json(pedidosPendientes);
