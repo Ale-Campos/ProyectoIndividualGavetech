@@ -156,3 +156,9 @@ function mostrar() {
   const modal_container = document.getElementById("modal_container");
   modal_container.classList.add("show");
 }
+
+async function cerrarSesion() {
+  fetch(urlPrincipal + "/login/prueba/deslog").then(() => {
+    window.location.href = urlPrincipal + "/login";
+  });
+}

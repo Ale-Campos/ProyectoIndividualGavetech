@@ -32,3 +32,9 @@ const mostarData = (data) => {
     tabla.appendChild(tr);
   });
 };
+
+async function cerrarSesion() {
+  fetch(urlPrincipal + "/login/prueba/deslog").then(() => {
+    window.location.href = urlPrincipal + "/login";
+  });
+}

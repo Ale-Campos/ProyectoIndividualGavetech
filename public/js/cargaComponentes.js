@@ -55,3 +55,9 @@ async function cargarComponentes() {
     },
   });
 }
+
+async function cerrarSesion() {
+  fetch(urlPrincipal + "/login/prueba/deslog").then(() => {
+    window.location.href = urlPrincipal + "/login";
+  });
+}

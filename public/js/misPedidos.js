@@ -150,3 +150,10 @@ function filtrarEstado() {
     mostarData(pedidos);
   }
 }
+
+async function cerrarSesion() {
+  fetch(urlPrincipal + "/login/prueba/deslog").then(() => {
+    window.location.href = urlPrincipal + "/login";
+  });
+}
+
