@@ -19,7 +19,7 @@ const mostarData = (pedidos) => {
     const td6 = document.createElement("td");
     const anchorDetalle = document.createElement("a");
     anchorDetalle.textContent = "Detalles";
-    anchorDetalle.className = "button";
+    anchorDetalle.className = "button-small";
     //Evento del <a> para mostrar el detalle del pedido
     anchorDetalle.addEventListener("click", async () => {
       await fetch(
@@ -36,7 +36,7 @@ const mostarData = (pedidos) => {
     //DEVOLUCIONES
     const anchorDevolucion = document.createElement("a");
     anchorDevolucion.textContent = "Devolucion";
-    anchorDevolucion.className = "button";
+    anchorDevolucion.className = "button-small";
 
     anchorDevolucion.addEventListener("click", async () => {
       await fetch(

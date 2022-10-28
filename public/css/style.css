@@ -447,3 +447,14 @@ tr:hover td {
   opacity: 0.7;
   font-size: 14px;
 }
+
+.button-small {
+  border: none;
+  width: 100%;
+  color: white;
+  font-size: 20px;
+  background: #1a2537;
+  padding: 3px 3px;
+  border-radius: 5px;
+  cursor: pointer;
+}

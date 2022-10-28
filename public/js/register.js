@@ -64,7 +64,7 @@ async function enviarInfo(alumno) {
     .then((data) => (result = data));
   console.log(result);
   if (result.result == "correcto") {
-    window.alert("todo correct");
+    window.alert("Te has registrado correctamente!");
     window.location.href = result.redirect;
   } else {
     window.alert("Usuario Existente");

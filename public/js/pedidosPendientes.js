@@ -36,7 +36,7 @@ const mostarData = (data) => {
 
     const anchorDetalle = document.createElement("a");
     anchorDetalle.textContent = "Detalles";
-    anchorDetalle.className = "button";
+    anchorDetalle.className = "button-small";
     //Evento del <a> para mostrar el detalle del pedido
     anchorDetalle.addEventListener("click", async () => {
       await fetch(
