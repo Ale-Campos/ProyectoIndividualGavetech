@@ -45,15 +45,6 @@ function agregarAPedido() {
   let select = document.getElementById("select2").value;
   const InputCantidad = document.getElementById("cant1");
 
-  console.log("CANTIDAD MAXIMA: " + InputCantidad.max);
-  console.log("CANTIDAD ACTUAL: " + InputCantidad.value);
-  console.log(
-    select != "SC" && parseInt(InputCantidad.max) >= parseInt(InputCantidad.value)
-  );
-  console.log("IMPORTANTE");
-  console.log(selecciones);
-  console.log(select);
-
   if (select != "SC" && parseInt(InputCantidad.max) >= parseInt(InputCantidad.value) && InputCantidad.value !=0) {
     
     fetch(window.location + `/select/${select}`)
@@ -63,8 +54,6 @@ function agregarAPedido() {
     const tabla = document.getElementById("contTabla");
     const cantidad = document.getElementById("cant1").value;
     const maximo = document.getElementById("cant1").max;
-    console.log("DEBERIA CAMBIAR EL SELECT");
-    console.log( cantidad - maximo);
     
     const imprimirResultado = (data) => {
       const seleccion = {

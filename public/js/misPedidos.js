@@ -56,10 +56,9 @@ const mostarData = (data) => {
         anchor.href = element.string_qr;
         break;
       case "Pendiente":
-        // img.src = imgPendiente;
-        // anchor.href = imgPendiente;
-        img.src = element.string_qr;
-        anchor.href = element.string_qr;
+        img.src = imgPendiente;
+        anchor.href = imgPendiente;
+        
         break;
       default:
         img.src = imgRechazado;
