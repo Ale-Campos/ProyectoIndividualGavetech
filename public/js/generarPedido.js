@@ -43,20 +43,29 @@ async function consularStock(value) {
 
 function agregarAPedido() {
   let select = document.getElementById("select2").value;
-  const cantidad = document.getElementById("cant1");
+  const InputCantidad = document.getElementById("cant1");
 
-  console.log("CANTIDAD MAXIMA: " + cantidad.max);
-  console.log("CANTIDAD ACTUAL: " + cantidad.value);
+  console.log("CANTIDAD MAXIMA: " + InputCantidad.max);
+  console.log("CANTIDAD ACTUAL: " + InputCantidad.value);
   console.log(
-    select != "SC" && parseInt(cantidad.max) >= parseInt(cantidad.value)
+    select != "SC" && parseInt(InputCantidad.max) >= parseInt(InputCantidad.value)
   );
-  if (select != "SC" && parseInt(cantidad.max) >= parseInt(cantidad.value)) {
+  console.log("IMPORTANTE");
+  console.log(selecciones);
+  console.log(select);
+
+  if (select != "SC" && parseInt(InputCantidad.max) >= parseInt(InputCantidad.value) && InputCantidad.value !=0) {
+    
     fetch(window.location + `/select/${select}`)
       .then((response) => response.json())
       .then((data) => imprimirResultado(data))
       .catch((err) => console.log(err));
     const tabla = document.getElementById("contTabla");
     const cantidad = document.getElementById("cant1").value;
+    const maximo = document.getElementById("cant1").max;
+    console.log("DEBERIA CAMBIAR EL SELECT");
+    console.log( cantidad - maximo);
+    
     const imprimirResultado = (data) => {
       const seleccion = {
         ////Aca hay que definir que datos se envían al backend
@@ -66,6 +75,7 @@ function agregarAPedido() {
         posicion: data[0].posicion
       };
       agregarSelecciones(seleccion);
+      InputCantidad.max = maximo-cantidad
       console.log("Selecciones");
       console.log(selecciones);
 
@@ -92,7 +102,7 @@ function agregarAPedido() {
       tabla.appendChild(tr);
     };
   } else {
-    cantidad.value = cantidad.max;
+    InputCantidad.value = InputCantidad.max;
     window.alert("Stock insuficiente");
   }
 }
