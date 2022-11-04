@@ -5,22 +5,22 @@ import morgan from "morgan";
 import path from "path";
 
 //Router
-import products from "./routes/userRoutes.routes";
-import register from "./routes/register.routes";
-import login from "./routes/login.routes";
-import menuAlumno from "./routes/menuAlumno.routes";
-import menuProfesor from "./routes/menuProfesor.routes";
-import generarPedidos from "./routes/pedidos.routes";
-import misPedodos from "./routes/misPedidos.routes";
-import pedidosPendientes from "./routes/pedidosPendientes.routes";
-import pedidosAprobados from "./routes/pedidosAprobados.routes";
-import gestProductos from "./routes/gestPedidos.routes";
-import cargaComponentes from "./routes/cargaComponente.routes";
+import products from "./src/routes/userRoutes.routes";
+import register from "./src/routes/register.routes";
+import login from "./src/routes/login.routes";
+import menuAlumno from "./src/routes/menuAlumno.routes";
+import menuProfesor from "./src/routes/menuProfesor.routes";
+import generarPedidos from "./src/routes/pedidos.routes";
+import misPedodos from "./src/routes/misPedidos.routes";
+import pedidosPendientes from "./src/routes/pedidosPendientes.routes";
+import pedidosAprobados from "./src/routes/pedidosAprobados.routes";
+import gestProductos from "./src/routes/gestPedidos.routes";
+import cargaComponentes from "./src/routes/cargaComponente.routes";
 const app = express();
 
 //Configs
 app.engine("html", require("ejs").renderFile);
-app.set("views", path.join(__dirname, "../public/views"));
+app.set("views", path.join(__dirname, "./public/views"));
 app.set("view engine", "html");
 app.set("port", 4000);
 
