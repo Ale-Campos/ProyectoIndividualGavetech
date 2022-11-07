@@ -3,7 +3,7 @@ import session from "express-session";
 import flash from "connect-flash";
 import morgan from "morgan";
 import path from "path";
-
+import http from "http"
 //Router
 import products from "./src/routes/userRoutes.routes";
 import register from "./src/routes/register.routes";
@@ -22,7 +22,7 @@ const app = express();
 app.engine("html", require("ejs").renderFile);
 app.set("views", path.join(__dirname, "./public/views"));
 app.set("view engine", "html");
-app.set("port", 4000);
+app.set("port", 3000);
 
 //Middlewares (funciones intermedias entre una request y una response)
 app.use(morgan("dev"));
@@ -56,7 +56,8 @@ const main = () => {
   app.listen(app.get("port"));
   console.log(`Server corriendo en el puerto ${app.get("port")}`);
 };
-main();
+
+main()
 app.use("/home", products);
 app.use("/register", register);
 app.use("/login", login);
