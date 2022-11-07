@@ -51,6 +51,12 @@ app.use(
 // });
 
 //Routes
+
+const main = () => {
+  app.listen(app.get("port"));
+  console.log(`Server corriendo en el puerto ${app.get("port")}`);
+};
+main();
 app.use("/home", products);
 app.use("/register", register);
 app.use("/login", login);
