@@ -40,21 +40,7 @@ app.use(
     saveUninitialized: true,
   })
 );
-// app.use(flash());
-// //Variable global para usuario logueado
-// app.use((req, res, next) => {
-//   const user = req.flash("usuario")[0];
-//   console.log(user);
-//   console.log(user != "");
-//   console.log(user != undefined);
-//   if (user != "" && user != undefined) {
-//     app.locals.usuario = user;
-//     console.log("MIDDLEWARE: ");
-//     console.log(app.locals.usuario);
-//   }
 
-//   next();
-// });
 
 //Routes
 
