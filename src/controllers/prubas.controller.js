@@ -1,4 +1,4 @@
-import { getConnection } from "./../database/database";
+// import { getConnection } from "./../database/database.js";
 import fs from "fs";
 
 const prueba = (req, res) => {

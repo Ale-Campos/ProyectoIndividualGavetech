@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { methodsAlumnos as alumnosController } from "../controllers/register.controller";
+import { methodsAlumnos as alumnosController } from "../controllers/register.controller.js";
 const router = Router();
 
 router.get("/", alumnosController.registerView);

@@ -1,5 +1,5 @@
-import { getConnection } from "../database/database";
-import { cryptMethods } from "./../qr/Encriptacion-V1";
+import  getConnection  from "../database/database.js";
+import  cryptMethods  from "./../qr/Encriptacion-V1.js";
 
 import QRCode from "qrcode";
 

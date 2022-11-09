@@ -1,5 +1,5 @@
-import { getConnection } from "../database/database";
-import { usuarioLogueado } from "./login.controller";
+import  getConnection  from "../database/database.js";
+
 
 const obtenerPedidosPendientes = async (req, res) => {
   const connection = await getConnection();

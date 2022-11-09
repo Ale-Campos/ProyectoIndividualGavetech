@@ -1,5 +1,5 @@
-var QRCode = require('qrcode')
+// import QRCode from 'qrcode';
 
-QRCode.toString("https://www.npmjs.com/package/qrcode#tofilepath-text-options-cberror", function (err, url) {
-  console.log(url)
-})
+// QRCode.toString("https://www.npmjs.com/package/qrcode#tofilepath-text-options-cberror", function (err, url) {
+//   console.log(url)
+// })

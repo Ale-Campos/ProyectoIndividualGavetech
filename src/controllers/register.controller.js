@@ -1,7 +1,7 @@
-import { getConnection } from "../database/database";
+import getConnection  from "../database/database.js";
 import path from "path";
 import bcryptjs from "bcryptjs";
-import config from "./../config";
+import config from "./../config.js";
 
 const register = async (req, res) => {
   const { dni, nombre, apellido, email, contraseña, curso } = req.body;

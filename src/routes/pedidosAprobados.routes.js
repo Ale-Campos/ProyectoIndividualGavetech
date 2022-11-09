@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { pedidosAprobadosMethods as pedidosAprobadosController } from "./../controllers/pedidosAprobados.controller";
-import { authController } from "../controllers/auth.controller";
+import { pedidosAprobadosMethods as pedidosAprobadosController } from "./../controllers/pedidosAprobados.controller.js";
+import { authController } from "../controllers/auth.controller.js";
 const router = Router();
 
 router.get(

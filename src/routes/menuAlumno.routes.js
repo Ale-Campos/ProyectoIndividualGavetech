@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { menuAlumnoMethods as menuAlumnoController } from "../controllers/menuPrincipalAlumno.controller";
-import { authController } from "../controllers/auth.controller";
+import { menuAlumnoMethods as menuAlumnoController } from "../controllers/menuPrincipalAlumno.controller.js";
+import { authController } from "../controllers/auth.controller.js";
 const router = Router();
 
 router.get(

@@ -1,6 +1,6 @@
-import { getConnection } from "./../database/database";
+import getConnection from "./../database/database.js";
 import fs from "fs";
-import { qrMethods } from "./../qr/Encriptacion-V1";
+import cryptMethods  from "./../qr/Encriptacion-V1.js";
 import path from "path";
 
 const getProducts = async (req, res) => {
@@ -166,10 +166,10 @@ const enviarStringQr = async (req, res) => {
     descripcion,
   };
 
-  const stringEncriptado = qrMethods.encrypt(string);
-  const stringDesencriptado = qrMethods.decrypt(stringEncriptado);
+  const stringEncriptado = cryptMethods.encrypt(string);
+  const stringDesencriptado = cryptMethods.decrypt(stringEncriptado);
   ////CAMBIAR stringDesencriptado por stringEncriptado, es solo de preueba
-  qrMethods.QRCode.toDataURL(stringDesencriptado, async (err, data) => {
+  cryptMethods.QRCode.toDataURL(stringDesencriptado, async (err, data) => {
     if (err) throw err;
     //Recordar siempre trabajar con JSONs
     const urldata = {

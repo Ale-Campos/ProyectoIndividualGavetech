@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { cargaComponentesMethods as cargaComponentesController } from "../controllers/cargaComponentes.controller";
-import { authController } from "../controllers/auth.controller";
+import { cargaComponentesMethods as cargaComponentesController } from "../controllers/cargaComponentes.controller.js";
+import { authController } from "../controllers/auth.controller.js";
 const router = Router();
 
 router.get(

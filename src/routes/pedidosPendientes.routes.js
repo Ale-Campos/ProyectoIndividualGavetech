@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { pedidosProfesorMethods as pedidosPendientesController } from "../controllers/pedidosProfesor.controller";
-import { authController } from "../controllers/auth.controller";
+import { pedidosProfesorMethods as pedidosPendientesController } from "../controllers/pedidosProfesor.controller.js";
+import { authController } from "../controllers/auth.controller.js";
 const router = Router();
 
 router.get(

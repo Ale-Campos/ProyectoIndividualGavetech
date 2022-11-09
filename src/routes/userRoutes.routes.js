@@ -1,7 +1,6 @@
 import { Router } from "express";
-import { isPlainObject } from "jquery";
-import { methods as productsController } from "./../controllers/products.controller";
-import { authController } from "../controllers/auth.controller";
+import { methods as productsController } from "./../controllers/products.controller.js";
+import { authController } from "../controllers/auth.controller.js";
 const router = Router();
 
 router.get("/", authController.validarAlumno, productsController.home);

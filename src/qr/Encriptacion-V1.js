@@ -1,6 +1,6 @@
 "use strict";
+import crypto from "crypto";
 
-const crypto = require("crypto"); //Requiere instalar "Crypto"
 const ENC_KEY = "bf3c199c2470cb477d907b1e0917c17b"; // set random encryption key (clave de encriptacion)
 const IV = "5183666c72eec9e4"; // set random initialisation vector (vector de inicializacion)
 const ALGORITHM = "aes-256-cbc"
@@ -21,13 +21,12 @@ function decrypt(encrypted) {
   let decrypted = decipher.update(encrypted, "base64", "utf8");
   return decrypted + decipher.final("utf8"); //Devuelve lo desencriptado
 }
-
-const QRCode = require("qrcode");
-
-export const cryptMethods = {
+ const cryptMethods = {
   encrypt,
   decrypt,
 };
+
+export default  cryptMethods 
 // star this gist if you found it useful
 
 /* Nuestros comentarios:

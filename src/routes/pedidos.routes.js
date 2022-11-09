@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { pedidosMethods as pedidosController } from "../controllers/generarPedido.controller";
-import { authController } from "../controllers/auth.controller";
+import { pedidosMethods as pedidosController } from "../controllers/generarPedido.controller.js";
+import { authController } from "../controllers/auth.controller.js";
 const router = Router();
 router.get("/", authController.validarAlumno, pedidosController.generarPedido);
 router.get(

@@ -1,4 +1,4 @@
-import { getConnection } from "../database/database";
+import getConnection from "../database/database.js";
 import path from "path";
 import bcryptjs from "bcryptjs";
 import config from "./../config.js";
