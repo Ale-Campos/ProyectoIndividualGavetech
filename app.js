@@ -21,6 +21,7 @@ import pedidosPendientes from "./src/routes/pedidosPendientes.routes.js";
 import pedidosAprobados from "./src/routes/pedidosAprobados.routes.js";
 import gestProductos from "./src/routes/gestPedidos.routes.js";
 import cargaComponentes from "./src/routes/cargaComponente.routes.js";
+import raspiRoutes from "./src/routes/raspi.router.js"
 import ejs from "ejs";
 const app = express();
 
@@ -61,6 +62,7 @@ app.use("/pedidosPendientes", pedidosPendientes);
 app.use("/pedidosAprobados", pedidosAprobados);
 app.use("/gestionarPedidos", gestProductos);
 app.use("/cargaComponentes", cargaComponentes);
+app.use("/raspi", raspiRoutes)
 //Archivos estáticos
 app.use(express.static("public"));
 
