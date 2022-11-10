@@ -14,7 +14,7 @@ const actualizarStock = async (req,res) => {
 
 const getProductos = async (req,res) =>{
     const connection = await getConnection();
-    const productos= connection.query(`
+    const productos= await connection.query(`
     SELECT * FROM producto;
     `);
     res.json(productos)

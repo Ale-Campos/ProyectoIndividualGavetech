@@ -1,12 +1,12 @@
 import express from "express";
 import session from "express-session";
-import flash from "connect-flash";
 import morgan from "morgan";
 import path from "path";
-import http from "http"
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import cors from "cors";
 
+ 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 //Router
@@ -23,8 +23,16 @@ import gestProductos from "./src/routes/gestPedidos.routes.js";
 import cargaComponentes from "./src/routes/cargaComponente.routes.js";
 import raspiRoutes from "./src/routes/raspi.router.js"
 import ejs from "ejs";
-const app = express();
 
+const app = express();
+app.use(cors());
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+  next();
+});
 //Configs
 app.engine("html", ejs.renderFile);
 app.set("views", path.join(__dirname, "./public/views"));
@@ -32,6 +40,7 @@ app.set("view engine", "html");
 app.set("port", 4000);
 
 //Middlewares (funciones intermedias entre una request y una response)
+
 app.use(morgan("dev"));
 app.use(express.json()); //Aclaramos que el servidor pueda procesar JSON
 app.use(
@@ -62,7 +71,7 @@ app.use("/pedidosPendientes", pedidosPendientes);
 app.use("/pedidosAprobados", pedidosAprobados);
 app.use("/gestionarPedidos", gestProductos);
 app.use("/cargaComponentes", cargaComponentes);
-app.use("/raspi", raspiRoutes)
+app.use("/raspi",raspiRoutes)
 //Archivos estáticos
 app.use(express.static("public"));
 
