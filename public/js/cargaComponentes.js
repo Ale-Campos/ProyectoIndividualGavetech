@@ -21,13 +21,11 @@ const cagrarSelect2 = (data) => {
 async function cargarComponentes() {
   const descripcion = document.getElementById("descripcion").value;
   const imagen = document.getElementById("imagen").value;
-  const cantidad = document.getElementById("cantidad").value;
   const posicion = document.getElementById("gaveta").value;
   const categoria = document.getElementById("select2").value;
   if (
     descripcion === "" ||
     imagen === "" ||
-    cantidad === "" ||
     posicion === ""
   ) {
     window.alert("Todos los campos son obligatorios");
@@ -40,13 +38,12 @@ async function cargarComponentes() {
   const json = {
     descripcion: descripcion,
     imagen: imagen,
-    cantidad: cantidad,
     posicion: posicion,
     categoria: categoria,
   };
 
   console.log(json);
-
+ mostrar();
   await fetch(urlPrincipal + "/cargaComponentes", {
     method: "POST",
     body: JSON.stringify(json),
@@ -60,4 +57,14 @@ async function cerrarSesion() {
   fetch(urlPrincipal + "/login/prueba/deslog").then(() => {
     window.location.href = urlPrincipal + "/login";
   });
+}
+
+function ocultar() {
+  const modal_container = document.getElementById("modal_container");
+  modal_container.classList.remove("show");
+  location.reload();
+}
+function mostrar() {
+  const modal_container = document.getElementById("modal_container");
+  modal_container.classList.add("show");
 }

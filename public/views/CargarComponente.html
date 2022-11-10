@@ -59,10 +59,6 @@
           </div>
 
           <div class="input-contenedor">
-            <input type="text" placeholder="Cantidad" id="cantidad" />
-          </div>
-
-          <div class="input-contenedor">
             <input type="text" placeholder="Gaveta" id="gaveta" />
           </div>
           <div class="input-contenedor">
@@ -83,7 +79,17 @@
           </div>
         </div>
       </div>
+      <div id="modal_container" class="modal-container">
+        <div class="modal">
+          <h1>Comentario</h1>
+          <p>
+            El pedido ha sido enviado, en el apartado de "Mis Pedidos" podrás
+            ver el estado del mismo
+          </p>
 
+          <a id="close" onclick="ocultar();" class="button">Listo</a>
+        </div>
+      </div>
       <script>
         // In your Javascript (external .js resource or <script> tag)
         $(document).ready(function () {
@@ -92,9 +98,4 @@
       </script>
     </main>
   </body>
-  <footer>
-    <button class="but2">
-      <a href="MenuPrincipal.html">Volver al menu</a>
-    </button>
-  </footer>
 </html>

@@ -28,7 +28,7 @@ const app = express();
 app.engine("html", ejs.renderFile);
 app.set("views", path.join(__dirname, "./public/views"));
 app.set("view engine", "html");
-app.set("port", 3000);
+app.set("port", 4000);
 
 //Middlewares (funciones intermedias entre una request y una response)
 app.use(morgan("dev"));
