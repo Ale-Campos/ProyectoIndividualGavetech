@@ -41,8 +41,8 @@ const enviarStringQr = async (req, res) => {
   console.log(idpedido[0].idpedido);
   console.log(descripcion);
   let string =
-    idpedido[0].idpedido +
-    1 +
+   "*"+ (idpedido[0].idpedido +
+    1 )+
     "/" +
     idProducto +
     "/" + posicion + "/"+
