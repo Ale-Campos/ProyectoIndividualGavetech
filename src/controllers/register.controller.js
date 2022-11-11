@@ -1,8 +1,12 @@
 import getConnection  from "../database/database.js";
 import path from "path";
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import bcryptjs from "bcryptjs";
 import config from "./../config.js";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const register = async (req, res) => {
   const { dni, nombre, apellido, email, contraseña, curso } = req.body;
   let contraseñaHash = await bcryptjs.hash(contraseña, 8);
