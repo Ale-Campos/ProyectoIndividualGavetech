@@ -21,12 +21,10 @@ const cagrarSelect2 = (data) => {
 async function cargarComponentes() {
   const descripcion = document.getElementById("descripcion").value;
   const imagen = document.getElementById("imagen").value;
-  const posicion = document.getElementById("gaveta").value;
   const categoria = document.getElementById("select2").value;
   if (
     descripcion === "" ||
-    imagen === "" ||
-    posicion === ""
+    imagen === ""
   ) {
     window.alert("Todos los campos son obligatorios");
     return;
@@ -38,7 +36,6 @@ async function cargarComponentes() {
   const json = {
     descripcion: descripcion,
     imagen: imagen,
-    posicion: posicion,
     categoria: categoria,
   };
 
@@ -63,8 +60,11 @@ function ocultar() {
   const modal_container = document.getElementById("modal_container");
   modal_container.classList.remove("show");
   location.reload();
+  const descripcion = document.getElementById("descripcion").value="";
+  const imagen = document.getElementById("imagen").value="";
 }
 function mostrar() {
   const modal_container = document.getElementById("modal_container");
   modal_container.classList.add("show");
+  
 }

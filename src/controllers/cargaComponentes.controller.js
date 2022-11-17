@@ -7,11 +7,11 @@ const getCargaComponente = async (req, res) => {
 const cargarComponente = async (req, res) => {
   const connection = await getConnection();
   //La posicion debería ser gestionada por la RasPi
-  const { descripcion, imagen, posicion, categoria } = req.body;
+  const { descripcion, imagen, categoria } = req.body;
 
   await connection.query(
     `
-  INSERT INTO producto (descripcion, imagen, posicion, categoria_id) values ('${descripcion}', '${imagen}', ${posicion},${categoria})`,
+  INSERT INTO producto (descripcion, imagen, categoria_id) values ('${descripcion}', '${imagen}',${categoria})`,
     (err, data) => {
       if (err) {
         throw err;

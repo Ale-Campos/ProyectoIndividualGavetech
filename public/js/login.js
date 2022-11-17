@@ -3,7 +3,6 @@ const urlPrincipal = "http://localhost:4000";
 function login() {
   const email = document.getElementById("email").value;
   const contraseña = document.getElementById("contraseña").value;
-  console.log(email);
   const log = {
     email: email,
     contraseña: contraseña,
@@ -18,7 +17,7 @@ async function enviarInfo(alumno) {
   let responseJson;
   let result;
   let jsonString = JSON.stringify(alumno);
-  console.log(jsonString);
+
   await fetch(window.location, {
     method: "POST",
     body: JSON.stringify(alumno),
@@ -28,13 +27,12 @@ async function enviarInfo(alumno) {
   })
     .then((res) => res.json())
     .then((data) => (responseJson = data));
-  console.log(responseJson);
   result = responseJson.result;
   switch (result) {
     case "correcto":
       let url = responseJson.redirect;
 
-      console.log(jsonString);
+
       redirect(url);
       break;
     case "incompleto":
