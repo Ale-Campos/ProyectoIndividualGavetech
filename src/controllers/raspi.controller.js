@@ -22,6 +22,7 @@ const getProductos = async (req,res) =>{
 }
 
 const actualizarDevolucion = async (req,res) => {
+    try{
     console.log("Entro al request");
     console.log(req.body);
     const  {id_pedido, id_producto, cantidad, comentario} = req.body;
@@ -31,6 +32,9 @@ const actualizarDevolucion = async (req,res) => {
     VALUES (${id_pedido}, ${id_producto}, ${cantidad},'${comentario}')
     `)
     res.send("Devolucion Registrada")
+    } catch(error){
+        res.send("Error en la información suministrada")
+    }
 }
 
 export const raspiMethod={
