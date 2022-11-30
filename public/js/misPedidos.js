@@ -1,4 +1,4 @@
-const urlPrincipal = "http://localhost:4000";
+const urlPrincipal = "http://192.168.0.8:4000";
 const imgPendiente =
   "https://st2.depositphotos.com/47577860/46188/v/600/depositphotos_461884700-stock-illustration-account-pending-profile-pending-user.jpg";
 const imgRechazado = "https://cdn-icons-png.flaticon.com/512/251/251278.png";
@@ -58,7 +58,7 @@ const mostarData = (data) => {
       case "Pendiente":
         img.src = imgPendiente;
         anchor.href = imgPendiente;
-        
+
         break;
       default:
         img.src = imgRechazado;
@@ -155,4 +155,3 @@ async function cerrarSesion() {
     window.location.href = urlPrincipal + "/login";
   });
 }
-

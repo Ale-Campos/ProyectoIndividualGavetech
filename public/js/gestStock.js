@@ -1,4 +1,4 @@
-const urlPrincipal = "http://localhost:4000";
+const urlPrincipal = "http://192.168.0.8:4000";
 
 fetch(urlPrincipal + "/gestionarPedidos/obtenerPedidos")
   .then((res) => res.json())

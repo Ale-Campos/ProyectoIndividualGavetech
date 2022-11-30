@@ -1,4 +1,4 @@
-const urlPrincipal = "http://localhost:4000";
+const urlPrincipal = "http://192.168.0.8:4000";
 
 fetch(window.location + "/obtenerCategorias")
   .then((response) => response.json())
@@ -22,10 +22,7 @@ async function cargarComponentes() {
   const descripcion = document.getElementById("descripcion").value;
   const imagen = document.getElementById("imagen").value;
   const categoria = document.getElementById("select2").value;
-  if (
-    descripcion === "" ||
-    imagen === ""
-  ) {
+  if (descripcion === "" || imagen === "") {
     window.alert("Todos los campos son obligatorios");
     return;
   }
@@ -40,7 +37,7 @@ async function cargarComponentes() {
   };
 
   console.log(json);
- mostrar();
+  mostrar();
   await fetch(urlPrincipal + "/cargaComponentes", {
     method: "POST",
     body: JSON.stringify(json),
@@ -60,11 +57,10 @@ function ocultar() {
   const modal_container = document.getElementById("modal_container");
   modal_container.classList.remove("show");
   location.reload();
-  const descripcion = document.getElementById("descripcion").value="";
-  const imagen = document.getElementById("imagen").value="";
+  const descripcion = (document.getElementById("descripcion").value = "");
+  const imagen = (document.getElementById("imagen").value = "");
 }
 function mostrar() {
   const modal_container = document.getElementById("modal_container");
   modal_container.classList.add("show");
-  
 }

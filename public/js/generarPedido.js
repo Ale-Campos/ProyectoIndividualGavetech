@@ -1,4 +1,4 @@
-const urlPrincipal = "http://localhost:4000";
+const urlPrincipal = "http://192.168.0.8:4000";
 let selecciones = [];
 fetch(window.location + "/list")
   .then((response) => response.json())
@@ -45,8 +45,11 @@ function agregarAPedido() {
   let select = document.getElementById("select2").value;
   const InputCantidad = document.getElementById("cant1");
 
-  if (select != "SC" && parseInt(InputCantidad.max) >= parseInt(InputCantidad.value) && InputCantidad.value !=0) {
-    
+  if (
+    select != "SC" &&
+    parseInt(InputCantidad.max) >= parseInt(InputCantidad.value) &&
+    InputCantidad.value != 0
+  ) {
     fetch(window.location + `/select/${select}`)
       .then((response) => response.json())
       .then((data) => imprimirResultado(data))
@@ -54,17 +57,17 @@ function agregarAPedido() {
     const tabla = document.getElementById("contTabla");
     const cantidad = document.getElementById("cant1").value;
     const maximo = document.getElementById("cant1").max;
-    
+
     const imprimirResultado = (data) => {
       const seleccion = {
         ////Aca hay que definir que datos se envían al backend
         descripcion: data[0].descripcion,
         idproducto: data[0].idproducto,
         cantidad: cantidad,
-        posicion: data[0].posicion
+        posicion: data[0].posicion,
       };
       agregarSelecciones(seleccion);
-      InputCantidad.max = maximo-cantidad
+      InputCantidad.max = maximo - cantidad;
       console.log("Selecciones");
       console.log(selecciones);
 
@@ -115,13 +118,13 @@ async function enviarPedido() {
   let idProducto = [];
   let cantidad = [];
   let descripcion = [];
-  let posicion=[];
+  let posicion = [];
   //Formamos los strings
   selecciones.forEach((x) => {
     idProducto.push(x.idproducto);
     cantidad.push(x.cantidad);
     descripcion.push(x.descripcion);
-    posicion.push(x.posicion)
+    posicion.push(x.posicion);
   });
   if (selecciones.length == 0) {
     window.alert("No se han seleccionado componentes");
@@ -132,7 +135,7 @@ async function enviarPedido() {
     idProducto: idProducto,
     cantidad: cantidad,
     descripcion: descripcion,
-    posicion: posicion
+    posicion: posicion,
   };
   console.log(json);
   //Enviamos por el post de la api

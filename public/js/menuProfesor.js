@@ -1,4 +1,4 @@
-const urlPrincipal = "http://localhost:4000";
+const urlPrincipal = "http://192.168.0.8:4000";
 
 async function solicitudesPendientes() {
   window.location.href = window.location + "solicitudesPendientes";
@@ -18,6 +18,6 @@ async function gestPedidos() {
   window.location.href = urlPrincipal + "/gestionarPedidos";
 }
 
-async function cargaComponentes(){
+async function cargaComponentes() {
   window.location.href = urlPrincipal + "/cargaComponentes";
 }

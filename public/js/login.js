@@ -1,4 +1,4 @@
-const urlPrincipal = "http://localhost:4000";
+const urlPrincipal = "http://192.168.0.8:4000";
 
 function login() {
   const email = document.getElementById("email").value;
@@ -31,7 +31,6 @@ async function enviarInfo(alumno) {
   switch (result) {
     case "correcto":
       let url = responseJson.redirect;
-
 
       redirect(url);
       break;
